@@ -1,0 +1,13 @@
+debug: true
+
+server:
+  port: 8443
+  ssl:
+    enabled: true
+    key-store-type: PKCS12
+    key-store: classpath:server-keystore.p12
+    key-store-password: server_key_pwd
+    trust-store-type: PKCS12
+    trust-store: classpath:server-truststore.p12
+    trust-store-password: server_trust_pwd
+    client-auth: need

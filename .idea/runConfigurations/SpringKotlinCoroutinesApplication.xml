@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="SpringKotlinCoroutinesApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <module name="spring-web-reactive-kotlin-coroutines" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="ro.jtonic.handson.spring.kotlin.coroutines.SpringKotlinCoroutinesApplication" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

@@ -1,0 +1,4 @@
+
+### Get Customers
+GET https://{{host}}:{{port}}/customers
+
