@@ -4,7 +4,7 @@ package ro.jtonic.handson.spring.kotlin.coroutines
 
 import arrow.core.Either
 import arrow.core.left
-import arrow.fx.resilience.Schedule
+import arrow.resilience.Schedule
 import io.kotest.core.spec.style.FreeSpec
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
