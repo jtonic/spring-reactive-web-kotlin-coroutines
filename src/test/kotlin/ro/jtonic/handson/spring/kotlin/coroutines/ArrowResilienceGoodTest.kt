@@ -5,6 +5,8 @@ package ro.jtonic.handson.spring.kotlin.coroutines
 import arrow.core.Either
 import arrow.core.left
 import arrow.resilience.Schedule
+import io.kotest.assertions.arrow.core.shouldBeLeft
+import io.kotest.assertions.arrow.core.shouldBeRight
 import io.kotest.core.spec.style.FreeSpec
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
@@ -66,18 +68,27 @@ class ArrowResilienceGoodTest : FreeSpec({
                         println("=".repeat(80))
                         println(testCase.name.testName)
                         measureTimeMillis {
-                            Schedule
-                                .exponential<Either<AppError, String>>(100.milliseconds, 2.0)
-                                .doWhile { _, duration ->
-                                    println("Duration: ${formattedNumber(duration.inWholeMilliseconds)}")
-                                    duration < 1.minutes
-                                }
-                                .doUntil { input, output -> input.isRight() }
-                                .repeat {
+                            // @formatter:off
+                            val result: Either<AppError, String> =
+                                (
+                                    Schedule
+                                        .exponential<Either<AppError, String>>(100.milliseconds, 2.0)
+                                        .doWhile { _, duration ->
+                                            println("Duration: ${formattedNumber(duration.inWholeMilliseconds)}")
+                                            duration < 1.minutes
+                                        }
+                                        .doUntil { input, _ -> input.isRight() }
+                                    zipRight
+                                        Schedule.identity()
+                                ).repeat {
                                     if (httpCase == 0) {
                                         failingHHttpCall()
                                     } else httpCall()
                                 }
+                            with(result) {
+                                if (httpCase == 0) shouldBeLeft() else shouldBeRight()
+                            }
+                            // @formatter:on
                         }.also {
                             println("Total Duration ${formattedNumber(it)}")
                         }
