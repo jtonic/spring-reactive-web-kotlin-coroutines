@@ -8,7 +8,9 @@ import arrow.resilience.Schedule
 import io.kotest.assertions.arrow.core.shouldBeLeft
 import io.kotest.assertions.arrow.core.shouldBeRight
 import io.kotest.core.spec.style.FreeSpec
+import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.test.runTest
 import java.text.NumberFormat
@@ -18,6 +20,7 @@ import java.util.*
 import kotlin.system.measureTimeMillis
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.minutes
+import kotlin.time.Duration.Companion.seconds
 
 class ArrowResilienceGoodTest : FreeSpec({
 
@@ -65,6 +68,13 @@ class ArrowResilienceGoodTest : FreeSpec({
                 "retry 6: $virtualTimeCase : $httpCase".config(timeout = 2.minutes) {
 
                     suspend fun innerTest() {
+                        println("Virtual Time: ${virtualTimeCase == 1}")
+                        val coroutineName = coroutineContext[CoroutineName] ?: "no name"
+                        val coroutineJob: Job? = coroutineContext[Job]
+                        println("Coroutine Name: $coroutineName")
+                        println("Coroutine Job = $coroutineJob")
+                        println("coroutineContext = $coroutineContext")
+
                         println("=".repeat(80))
                         println(testCase.name.testName)
                         measureTimeMillis {
@@ -75,7 +85,7 @@ class ArrowResilienceGoodTest : FreeSpec({
                                         .exponential<Either<AppError, String>>(100.milliseconds, 2.0)
                                         .doWhile { _, duration ->
                                             println("Duration: ${formattedNumber(duration.inWholeMilliseconds)}")
-                                            duration < 1.minutes
+                                            duration < 10.seconds
                                         }
                                         .doUntil { input, _ -> input.isRight() }
                                     zipRight
