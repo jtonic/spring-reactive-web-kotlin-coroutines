@@ -1,21 +1,22 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="spring-kotlin-coroutines [clean,verify...]" type="MavenRunConfiguration" factoryName="Maven">
+  <configuration default="false" name="spring-kotlin-coroutines [clean,verify spring-boot:run]" type="MavenRunConfiguration" factoryName="Maven">
     <MavenSettings>
       <option name="myGeneralSettings">
         <MavenGeneralSettings>
           <option name="alwaysUpdateSnapshots" value="true" />
           <option name="checksumPolicy" value="NOT_SET" />
+          <option name="customMavenHome" />
           <option name="emulateTerminal" value="false" />
           <option name="failureBehavior" value="NOT_SET" />
           <option name="localRepository" value="" />
           <option name="mavenHome" value="Use Maven wrapper" />
+          <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
           <option name="nonRecursive" value="false" />
           <option name="outputLevel" value="INFO" />
           <option name="printErrorStackTraces" value="false" />
           <option name="showDialogWithAdvancedSettings" value="false" />
           <option name="threads" />
           <option name="useMavenConfig" value="true" />
-          <option name="usePluginRegistry" value="false" />
           <option name="userSettingsFile" value="" />
           <option name="workOffline" value="false" />
         </MavenGeneralSettings>
@@ -49,6 +50,7 @@
               <option value="org.springframework.boot:spring-boot-maven-plugin:3.1.1:run" />
             </list>
           </option>
+          <option name="multimoduleDir" />
           <option name="pomFileName" value="pom.xml" />
           <option name="profilesMap">
             <map />
