@@ -22,6 +22,7 @@
 ```
     <java.version>17</java.version>
     <kotlin.version>2.0.0-Beta5</kotlin.version>
+    <kotlin.compiler.languageVersion>2.0</kotlin.compiler.languageVersion>
     <kotlinx-coroutines.version>1.8.0</kotlinx-coroutines.version>
     <arrow.version>1.2.3</arrow.version>
     <kotest.version>5.8.1</kotest.version>
@@ -32,4 +33,4 @@
 
 - https://kotlinlang.org/docs/configure-build-for-eap.html#adjust-versions-in-dependencies
 - https://kotlinlang.org/docs/whatsnew-eap.html#how-to-update-to-kotlin-kotlineapversion
-- 
+- https://kotlinlang.org/docs/whatsnew1920.html#enable-k2-in-maven
