@@ -15,7 +15,7 @@
     <description>Demo project for Spring Boot Reactive Web (kotlin | coroutines)</description>
     <properties>
         <java.version>17</java.version>
-        <kotlin.version>2.0.0-Beta5</kotlin.version>
+        <kotlin.version>1.9.22</kotlin.version>
         <kotlin.compiler.languageVersion>2.0</kotlin.compiler.languageVersion>
         <kotlinx-coroutines.version>1.8.0</kotlinx-coroutines.version>
         <arrow.version>1.2.4</arrow.version>
