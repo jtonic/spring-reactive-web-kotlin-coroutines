@@ -1,10 +1,17 @@
+@host=localhost
+@port=8443
 
-### Get Customers
-GET https://{{host}}:{{port}}/customers
+### Get Customers 1
+GET https://{{host}}:{{port}}/customers/1
+
+### Get customers 2
+GET https://{{host}}:{{port}}/customers/2
+
+### Get customers 3
+GET https://{{host}}:{{port}}/customers/3
 
 ### Post Customers
 POST https://{{host}}:{{port}}/customers
 Content-Type: application/x-www-form-urlencoded
 
 input=10
-
