@@ -19,7 +19,7 @@
         <kotlin.compiler.languageVersion>2.0</kotlin.compiler.languageVersion>
         <kotlinx-coroutines.version>1.9.0</kotlinx-coroutines.version>
         <arrow.version>1.2.4</arrow.version>
-        <kotest.version>5.8.1</kotest.version>
+        <kotest.version>5.9.0</kotest.version>
         <kotest-assertions-arrow-jvm.version>1.4.0</kotest-assertions-arrow-jvm.version>
     </properties>
     <dependencies>
