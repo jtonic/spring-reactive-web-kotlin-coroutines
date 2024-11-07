@@ -16,11 +16,13 @@
     <properties>
         <java.version>17</java.version>
         <kotlin.version>1.9.25</kotlin.version>
-        <kotlin.compiler.languageVersion>2.0</kotlin.compiler.languageVersion>
+        <!--<kotlin.compiler.languageVersion>2.0</kotlin.compiler.languageVersion>-->
         <kotlinx-coroutines.version>1.9.0</kotlinx-coroutines.version>
         <arrow.version>1.2.4</arrow.version>
         <kotest.version>5.8.1</kotest.version>
         <kotest-assertions-arrow-jvm.version>1.4.0</kotest-assertions-arrow-jvm.version>
+        <kotlin-logging.version>3.0.5</kotlin-logging.version>
+        <kotlin-logging-jvm.version>6.0.9</kotlin-logging-jvm.version>
     </properties>
     <dependencies>
         <dependency>
@@ -73,7 +75,11 @@
             <artifactId>arrow-resilience-jvm</artifactId>
             <version>1.2.0</version>
         </dependency>
-        <!-- end: arrow dependencies -->
+        <dependency>
+            <groupId>io.github.oshai</groupId>
+            <artifactId>kotlin-logging-jvm</artifactId>
+            <version>${kotlin-logging-jvm.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

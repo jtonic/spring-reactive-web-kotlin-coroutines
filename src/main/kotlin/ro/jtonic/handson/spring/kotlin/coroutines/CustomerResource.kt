@@ -4,6 +4,7 @@ import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.future.asDeferred
 import kotlinx.coroutines.future.future
+import org.springframework.context.ApplicationEventPublisher
 import org.springframework.stereotype.Service
 import org.springframework.web.bind.annotation.*
 import java.util.concurrent.CompletableFuture
@@ -37,13 +38,16 @@ class CustomerResource(
 }
 
 @Service
-class CustomerService1 {
-    suspend fun getCustomers() =
+class CustomerService1 (val publisher: ApplicationEventPublisher) {
+    suspend fun getCustomers() = run {
         listOf(
             Customer("1", "Antonel-Ernest Pazargic", 54),
             Customer("2", "Liviu Pazargic", 40),
             Customer("3", "Irina Pazargic", 33),
-        )
+        ).also {
+            publisher.publishEvent(it[0])
+        }
+    }
 }
 
 @Service
