@@ -7,7 +7,7 @@ server:
     key-store-type: PKCS12
     key-store: classpath:server-keystore.p12
     key-store-password: server-p12-pwd
-    trust-store-type: PEM
-    trust-store: classpath:server-truststore.pem
-    trust-store-password: server_trust_pwd
+#    trust-store-type: PKCS12
+#    trust-store: classpath:server-truststore.p12
+#    trust-store-password: server_trust_pwd
     client-auth: none

@@ -28,7 +28,6 @@
   - server-publickey.pem
   - server-trust.crt - for mTLS
   - server.p12 (pwd: server-p12-pwd)
-  - server-trust.p12 (pwd: server-trust-p12-pwd)
 
 **Client side:**
   - client.key
@@ -64,7 +63,7 @@
    
     >    openssl pkcs12 -info -in server.p12                          # p12 file content
 
-3. Export the server public key
+3. Export the server certificate
 
     > openssl x509 -in server.crt -pubkey -noout > server-publickey.pem
    
@@ -83,43 +82,8 @@
    > curl --cacert client-trust.crt https://localhost:8443/customers | jq
 
 
-### mTLS HTTPs calls
-
-1. client private key (client.key) and self-signed certificate (client.crt) 
-
-    - with subject as command args
-
-    > openssl req -x509 -nodes -newkey rsa:2048 -keyout client.key -out client.crt -days 730 -subj "/C=RO/ST=Bucharest/L=Bucharest/O=Ktonic/CN=ktonic.client.com"
-
-2. import client.key and server.crt in client-keystore.p12
-
-    > openssl pkcs12 -export -out client.p12 -inkey client.key -in client.crt
-
-3. export client-publickey.crt
-
-    > openssl x509 -in client.crt -pubkey -noout > client-publickey.pem
-
-4. import client.crt and client-publickey.crt in the server-trust-store.crt
-
-    > cat client.crt client-publickey.pem > server-trust.crt
-    > 
-
-5. convert server-trust.crt to server-trust.pem
-
-    > openssl x509 -in server-trust.crt -out server-trust.pem
-
-6. convert server-trust.pem to server-trust.p12
-
-    > openssl pkcs12 -export -out server-trust.p12 -inkey server.key -in server-trust.pem
-
-6. Test the application with cURL
-
-    > curl --cert client.p12:client-p12-pwd https://localhost:8443/customers | jq
-
 ## Self-signed CA certificates
 
 ### non mTLS HTTPs calls
 
-
-
-openssl pkcs12 -export -out server-truststore.p12 -in server-truststore.pem -name client
+### mTLS HTTPs calls
