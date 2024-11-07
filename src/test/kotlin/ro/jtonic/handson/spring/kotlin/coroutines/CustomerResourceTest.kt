@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.server.LocalServerPort
 import org.springframework.test.web.reactive.server.WebTestClient
+import org.springframework.web.reactive.function.BodyInserters
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class CustomerResourceTest (
@@ -18,8 +19,9 @@ class CustomerResourceTest (
     @Test
     fun getCustomers() {
         webTestClient
-            .get()
+            .post()
             .uri("/customers")
+            .body(BodyInserters.fromFormData("input", "10"))
             .exchange()
             .expectStatus().isOk()
     }

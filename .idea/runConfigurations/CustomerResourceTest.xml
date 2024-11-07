@@ -7,6 +7,8 @@
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <option name="ALTERNATIVE_JRE_PATH" value="21" />
     <option name="PACKAGE_NAME" value="ro.jtonic.handson.spring.kotlin.coroutines" />
     <option name="MAIN_CLASS_NAME" value="ro.jtonic.handson.spring.kotlin.coroutines.CustomerResourceTest" />
     <option name="METHOD_NAME" value="" />

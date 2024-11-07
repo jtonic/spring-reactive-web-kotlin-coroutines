@@ -11,3 +11,7 @@ server:
 #    trust-store: classpath:server-truststore.p12
 #    trust-store-password: server_trust_pwd
     client-auth: none
+spring:
+  threads:
+    virtual:
+      enabled: true
