@@ -5,6 +5,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.future.asDeferred
 import kotlinx.coroutines.future.future
 import org.springframework.context.ApplicationEventPublisher
+import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 import org.springframework.web.bind.annotation.*
 import java.util.concurrent.CompletableFuture
@@ -19,8 +20,10 @@ class CustomerResource(
 ) {
 
     @GetMapping("/1")
-    suspend fun getCustomers1(): List<Customer> =
-        customerService1.getCustomers()
+    suspend fun getCustomers1(): ResponseEntity<List<Customer>> =
+        ResponseEntity.ok()
+            .header("Set-Cookie", "name=Antonel-Ernest Pazargic")
+            .body(customerService1.getCustomers())
 
     @GetMapping("/2")
     suspend fun getCustomers2(): List<Customer> =

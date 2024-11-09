@@ -1,17 +1,15 @@
-@host=localhost
-@port=8443
-
 ### Get Customers 1
-GET https://{{host}}:{{port}}/customers/1
+GET {{base-url}}/customers/1
+Set-Cookie: customer2=Tony2
 
 ### Get customers 2
-GET https://{{host}}:{{port}}/customers/2
+GET {{base-url}}/customers/2
 
 ### Get customers 3
-GET https://{{host}}:{{port}}/customers/3
+GET {{base-url}}/customers/3
 
 ### Post Customers
-POST https://{{host}}:{{port}}/customers
+POST {{base-url}}/customers
 Content-Type: application/x-www-form-urlencoded
 
 input=10
