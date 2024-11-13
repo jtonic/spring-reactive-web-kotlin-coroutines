@@ -15,8 +15,8 @@
     <description>Demo project for Spring Boot Reactive Web (kotlin | coroutines)</description>
     <properties>
         <java.version>21</java.version>
-        <kotlin.version>1.9.25</kotlin.version>
-        <!--<kotlin.compiler.languageVersion>2.0</kotlin.compiler.languageVersion>-->
+        <kotlin.version>2.1.0-RC</kotlin.version>
+        <kotlin.compiler.languageVersion>2.0</kotlin.compiler.languageVersion>
         <kotlinx-coroutines.version>1.9.0</kotlinx-coroutines.version>
         <arrow.version>1.2.4</arrow.version>
         <kotest.version>5.8.1</kotest.version>
@@ -142,6 +142,12 @@
                 <configuration>
                     <args>
                         <arg>-Xjsr305=strict</arg>
+                        <!--
+                        To find out experimental arguments go to
+                        https://kotlinlang.org/docs/kotlin-language-features-and-proposals.html
+                        and navigate to KEEP youtrack issue of the experimental feature
+                        -->
+                        <arg>-Xwhen-guards</arg>
                     </args>
                     <compilerPlugins>
                         <plugin>spring</plugin>

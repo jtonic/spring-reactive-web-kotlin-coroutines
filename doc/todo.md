@@ -7,7 +7,7 @@
   - [x] Coroutines to CF
   - [x] Reactor
 - [x] kotest testing
-- [ ] Migration to K2 (and Kotlin 2.0.0-Beta5)
+- [x] Migration to K2 (and Kotlin 2.0.0-Beta5)
 - [ ] Effects Programming with Kotlin Arrow
 - [ ] Integration with Kafka
 - [ ] Plain Kotlin Coroutines
