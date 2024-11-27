@@ -2,7 +2,6 @@ package ro.jtonic.handson.spring.kotlin.coroutines
 
 import arrow.core.andThen
 
-
 @JvmInline
 value class Input(val value: Int)
 
