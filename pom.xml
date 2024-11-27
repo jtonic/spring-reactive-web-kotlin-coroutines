@@ -18,12 +18,11 @@
         <kotlin.version>2.1.0</kotlin.version>
         <kotlin.compiler.languageVersion>2.0</kotlin.compiler.languageVersion>
         <kotlinx-coroutines.version>1.9.0</kotlinx-coroutines.version>
-        <arrow.version>1.2.4</arrow.version>
-        <kotest.version>5.8.1</kotest.version>
+        <arrow.version>2.0.0-beta.3</arrow.version>
+        <kotest.version>6.0.0.M1</kotest.version>
         <kotest-assertions-arrow-jvm.version>1.4.0</kotest-assertions-arrow-jvm.version>
         <kotlin-logging.version>3.0.5</kotlin-logging.version>
         <kotlin-logging-jvm.version>7.0.0</kotlin-logging-jvm.version>
-        <arrow-resilience-jvm.version>1.2.0</arrow-resilience-jvm.version>
     </properties>
     <dependencies>
         <dependency>
@@ -59,7 +58,7 @@
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
-            <artifactId>kotlinx-coroutines-jdk8</artifactId>
+            <artifactId>kotlinx-coroutines-core-jvm</artifactId>
             <version>${kotlinx-coroutines.version}</version>
         </dependency>
         <!-- arrow dependencies -->
@@ -69,12 +68,18 @@
         </dependency>
         <dependency>
             <groupId>io.arrow-kt</groupId>
-            <artifactId>arrow-fx-coroutines</artifactId>
+            <artifactId>arrow-functions-jvm</artifactId>
+            <version>${arrow.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.arrow-kt</groupId>
+            <artifactId>arrow-fx-coroutines-jvm</artifactId>
+            <version>${arrow.version}</version>
         </dependency>
         <dependency>
             <groupId>io.arrow-kt</groupId>
             <artifactId>arrow-resilience-jvm</artifactId>
-            <version>${arrow-resilience-jvm.version}</version>
+            <version>${arrow.version}</version>
         </dependency>
         <dependency>
             <groupId>io.github.oshai</groupId>
@@ -104,7 +109,7 @@
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
-            <artifactId>kotlinx-coroutines-test</artifactId>
+            <artifactId>kotlinx-coroutines-test-jvm</artifactId>
             <version>${kotlinx-coroutines.version}</version>
             <scope>test</scope>
         </dependency>
