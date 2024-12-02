@@ -23,6 +23,7 @@
         <kotest-assertions-arrow-jvm.version>1.4.0</kotest-assertions-arrow-jvm.version>
         <kotlin-logging.version>3.0.5</kotlin-logging.version>
         <kotlin-logging-jvm.version>7.0.0</kotlin-logging-jvm.version>
+        <vavr.version>0.10.5</vavr.version>
     </properties>
     <dependencies>
         <dependency>
@@ -85,6 +86,11 @@
             <groupId>io.github.oshai</groupId>
             <artifactId>kotlin-logging-jvm</artifactId>
             <version>${kotlin-logging-jvm.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.vavr</groupId>
+            <artifactId>vavr</artifactId>
+            <version>${vavr.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
