@@ -8,7 +8,7 @@ public class TuplesTest {
 
     @Test
     void testTuple2() {
-        var tony = Tuple2.of("Tony", 54);
+        var tony = Tuple.of("Tony", 54);
 
         String result = switch (tony) {
             case Tuple2<String, Integer>(String first, Integer second) when first.equals("Tony") && second == 54 -> "Old Tony";
@@ -19,7 +19,7 @@ public class TuplesTest {
         assertThat(tony.first()).isEqualTo("Tony");
         assertThat(tony.second()).isEqualTo(54);
 
-        var tonyClone = Tuple2.of("Tony", 54);
+        var tonyClone = new Tuple2<>("Tony", 54);
         assertThat(tonyClone).isEqualTo(tony);
 
         assertThat(result).isEqualTo("Old Tony");
