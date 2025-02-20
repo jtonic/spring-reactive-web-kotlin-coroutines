@@ -3,7 +3,6 @@ package ro.jtonic.handson.spring
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
 
-
 fun interface Walkable {
     fun walk(): String
 }
