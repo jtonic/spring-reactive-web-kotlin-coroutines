@@ -3,14 +3,16 @@ package ro.jtonic.handson.spring
 import arrow.core.andThen
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
+import ro.jtonic.handson.spring.Fp.Operation
 
-fun interface Operation<in I, out O> {
-    operator fun invoke(i: I): O
-    fun asFn(): (I) -> O = { i: I -> this(i) }
-    infix fun <R> andThen(f: Operation<O, R>): Operation<I, R> = Operation<I, R> { i -> f(this.invoke(i)) }
+object Fp {
+    fun interface Operation<in I, out O> {
+        operator fun invoke(i: I): O
+        fun asFn(): (I) -> O = { i: I -> this(i) }
+        infix fun <R> andThen(f: Operation<O, R>): Operation<I, R> = Operation<I, R> { i -> f(this.invoke(i)) }
+    }
+    fun <I, O> ((I) -> O).asOp(): Operation<I, O> = Operation<I, O> { i -> this(i) }
 }
-
-fun <I, O> ((I) -> O).asOp(): Operation<I, O> = Operation<I, O> { i -> this(i) }
 
 class UseCases2 : FreeSpec({
 
