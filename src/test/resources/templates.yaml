@@ -1,0 +1,8 @@
+bbonb:
+  templates:
+    FINAL_REJECTION_SAVINGS:
+      template: "${bbonb.discriminator}/Template/bbonb_savings_final_rejection"
+      subject: "Ihre Anfrage zum ING Business Extra-Konto"
+    INTERMEDIATE_REJECTION_SAVINGS:
+      template: "${bbonb.discriminator}/Template/bbonb_savings_intermediate_rejection"
+      subject: "Ihre Anfrage zum ING Business Extra-Konto"

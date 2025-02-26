@@ -1,0 +1,7 @@
+bbonb:
+  message: Hello
+
+bbonb.discriminator: bbonb
+spring:
+  config:
+    import: "templates.yaml"

@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class SpringKotlinCoroutinesApplicationTests(
+class SpringKotlinCoroutinesApplicationTest(
 	@Autowired private val runFlow: UseCase<Input, Unit>,
 ) {
 
