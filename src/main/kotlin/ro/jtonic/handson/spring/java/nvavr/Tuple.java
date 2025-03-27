@@ -1,4 +1,4 @@
-package ro.jtonic.handson.spring.java;
+package ro.jtonic.handson.spring.java.nvavr;
 
 public interface Tuple {
 

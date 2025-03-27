@@ -1,6 +1,8 @@
 package ro.jtonic.handson.spring.java;
 
 import org.junit.jupiter.api.Test;
+import ro.jtonic.handson.spring.java.nvavr.Tuple;
+import ro.jtonic.handson.spring.java.nvavr.Tuple2;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
