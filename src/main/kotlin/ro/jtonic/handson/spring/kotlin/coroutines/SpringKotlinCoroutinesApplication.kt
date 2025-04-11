@@ -6,7 +6,7 @@ import org.springframework.boot.runApplication
 import org.springframework.scheduling.annotation.EnableScheduling
 
 @SpringBootApplication
-@EnableConfigurationProperties(BBonbProps::class)
+@EnableConfigurationProperties(BBonbProps::class, WebApiProps::class)
 @EnableScheduling
 class SpringKotlinCoroutinesApplication
 

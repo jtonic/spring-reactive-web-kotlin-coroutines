@@ -12,3 +12,12 @@ spring:
   threads:
     virtual:
       enabled: true
+web:
+  client:
+    one:
+      name: one
+      description: one
+    two:
+      name: two
+      description: two
+      retryCount: 5
