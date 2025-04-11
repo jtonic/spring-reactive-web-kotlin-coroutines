@@ -38,10 +38,10 @@ class PersonMappingTest : FreeSpec({
     }
 })
 
-data class User(val userName: String, val role: Role)
+data class User(val userName: String, val role: Role, val description: String = "No description")
 data class Role(val name: String)
 
-data class UserDto(val uname: String, val role: String)
+data class UserDto(val uname: String, val role: String, val description: String)
 
 @Mapper
 interface UserMapper {
