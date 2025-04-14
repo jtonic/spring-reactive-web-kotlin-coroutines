@@ -1,0 +1,13 @@
+spring:
+  jmx:
+    enabled: true
+management:
+  endpoint:
+    mappings:
+      access: unrestricted
+    health:
+      access: unrestricted
+  endpoints:
+    web:
+      exposure:
+        include: mappings, health
