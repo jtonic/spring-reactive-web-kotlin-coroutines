@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="All tests" type="ioKotest" factoryName="Kotest" defaultName="singleModule">
+  <configuration default="false" name="All Kotests" type="ioKotest" factoryName="Kotest" defaultName="singleModule">
     <module name="spring-web-reactive-kotlin-coroutines" />
     <option name="jrePath" value="" />
     <option name="jrePathEnabled" value="false" />
@@ -8,7 +8,7 @@
     <option name="programParameters" value="" />
     <option name="specName" value="" />
     <option name="testPath" value="" />
-    <option name="packageName" value="ro.jtonic.handson.spring.kotlin.coroutines" />
+    <option name="packageName" value="ro.jtonic.handson.spring" />
     <option name="vmparams" value="" />
     <method v="2">
       <option name="Make" enabled="true" />

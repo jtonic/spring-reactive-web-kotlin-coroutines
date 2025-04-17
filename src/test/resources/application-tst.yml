@@ -5,3 +5,7 @@ bbonb.discriminator: bbonb
 spring:
   config:
     import: "templates.yaml"
+
+logging:
+  level:
+    ro.jtonic.handson.spring.java.aspect: DEBUG

@@ -1,0 +1,45 @@
+package ro.jtonic.handson.spring.java.aspect
+
+import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Test
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.context.ActiveProfiles
+import java.time.Duration
+import java.time.Instant
+
+@SpringBootTest
+@ActiveProfiles("tst")
+class EnableTracingPerformanceTest {
+
+    @Autowired
+    private lateinit var testService: TestService
+
+    private companion object {
+        const val ITERATIONS = 1000
+    }
+
+    @Test
+    fun testTracingPerformanceOverhead() {
+        val startTraced = Instant.now()
+        (1..ITERATIONS).forEach { _ ->
+            testService.methodWithDefaultTracing("test", "uber-trace-id-123")
+        }
+        val tracedDuration = Duration.between(startTraced, Instant.now())
+    
+        val startUntraced = Instant.now()
+        (1..ITERATIONS).forEach { _ ->
+            testService.methodWithoutTracing("test")
+        }
+        val untracedDuration = Duration.between(startUntraced, Instant.now())
+
+        println("Execution time with tracing: ${tracedDuration.toMillis()}ms")
+        println("Execution time without tracing: ${untracedDuration.toMillis()}ms")
+        println("Overhead per operation: ${(tracedDuration.toMillis() - untracedDuration.toMillis()).toFloat() / ITERATIONS}ms")
+
+        assertTrue(
+            tracedDuration.compareTo(untracedDuration.multipliedBy(50)) < 0,
+            "Tracing overhead should be reasonable"
+        )
+    }
+}
