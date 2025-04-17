@@ -23,7 +23,7 @@ class EnableTracingPerformanceTest {
     fun testTracingPerformanceOverhead() {
         val startTraced = Instant.now()
         (1..ITERATIONS).forEach { _ ->
-            testService.methodWithDefaultTracing("test", "uber-trace-id-123")
+            testService.methodWithDefaultTracing("test", "trace123:span:prnt:1")
         }
         val tracedDuration = Duration.between(startTraced, Instant.now())
     

@@ -114,7 +114,6 @@ public class TracingAspect {
     private void processKafkaListenerTracing(Method method, Object[] args) {
         Parameter[] parameters = method.getParameters();
 
-        // Look for the Header parameter with name="uber-trace-id"
         range(0, parameters.length)
                 .filter(i -> {
                     Header headerAnnotation = parameters[i].getAnnotation(Header.class);
@@ -138,8 +137,17 @@ public class TracingAspect {
             String parentSpanId = traceParts[2];
             String ext = traceParts[3];
 
-            logger.debug("In KafkaListener processing message with traceId: {}, spanId: {}, parentSpanId: {}, ext: {}",
-                    traceId, spanId, parentSpanId, ext);
+            boolean isTraceIdValid = Utils.validateTraceId(traceId);
+            boolean isSpanIdValid = Utils.validateSpanId(spanId);
+            boolean isParentSpanIdValid = Utils.validateSpanId(parentSpanId);
+
+            if (isTraceIdValid && isSpanIdValid && isParentSpanIdValid) {
+                logger.debug("In KafkaListener processing message with valid traceId: {}, spanId: {}, parentSpanId: {}, ext: {}",
+                        traceId, spanId, parentSpanId, ext);
+            } else {
+                logger.warn("In KafkaListener processing message with invalid trace components - traceId valid: {}, spanId valid: {}, parentSpanId valid: {}",
+                        isTraceIdValid, isSpanIdValid, isParentSpanIdValid);
+            }
         } else {
             logger.debug("In KafkaListener with malformed uber-trace-id: {}", uberTraceId);
         }
