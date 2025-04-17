@@ -48,11 +48,11 @@ public class MiscTest {
     @Test
     public void testCF2() {
         CompletableFuture.<SSN>failedFuture(new RuntimeException("Boom!"))
-                .exceptionally((e) -> {
+                .exceptionally(e -> {
                     log.error("Exception occurred: {}", e.getMessage(), e);
                     return null;
                 })
-                .thenAccept((a) -> log.info("Success. Msg: {}", a.ssn))
+                .thenAccept(a -> log.info("Success. Msg: {}", a != null ? a.ssn : "no-ssn"))
                 .join();
     }
 
