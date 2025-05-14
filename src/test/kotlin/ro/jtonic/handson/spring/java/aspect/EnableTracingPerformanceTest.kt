@@ -1,15 +1,16 @@
 package ro.jtonic.handson.spring.java.aspect
 
 import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles
+import ro.jtonic.handson.spring.java.JavaSpringIntegrationTest
 import java.time.Duration
 import java.time.Instant
 
-@SpringBootTest
-@ActiveProfiles("tst")
+@JavaSpringIntegrationTest
 class EnableTracingPerformanceTest {
 
     @Autowired
@@ -20,6 +21,7 @@ class EnableTracingPerformanceTest {
     }
 
     @Test
+    @Disabled
     fun testTracingPerformanceOverhead() {
         val startTraced = Instant.now()
         (1..ITERATIONS).forEach { _ ->

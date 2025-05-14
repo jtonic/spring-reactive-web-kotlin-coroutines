@@ -6,17 +6,14 @@ import org.mockito.Mockito;
 import org.mockito.mock.MockCreationSettings;
 import org.mockito.mock.MockName;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
-import ro.jtonic.handson.spring.java.JavaMainApp;
+import ro.jtonic.handson.spring.java.JavaSpringIntegrationTest;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
-@SpringBootTest(classes = {JavaMainApp.class})
-@ActiveProfiles(profiles = {"default", "tst"})
+@JavaSpringIntegrationTest
 class PrintingServiceIT {
 
     @Autowired
