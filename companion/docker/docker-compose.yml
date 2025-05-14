@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   zookeeper:
-    image: confluentinc/cp-zookeeper:7.5.3
+    image: confluentinc/cp-zookeeper:7.6.1
     container_name: zookeeper
     ports:
       - "2181:2181"
@@ -14,7 +14,7 @@ services:
       - zookeeper-logs:/var/lib/zookeeper/log
 
   kafka:
-    image: confluentinc/cp-kafka:7.5.3
+    image: confluentinc/cp-kafka:7.6.1
     container_name: kafka
     depends_on:
       - zookeeper
@@ -62,7 +62,7 @@ services:
 
   # Kafka Connect (optional, uncomment if needed)
   # kafka-connect:
-  #   image: confluentinc/cp-kafka-connect:7.5.3
+  #   image: confluentinc/cp-kafka-connect:7.6.1
   #   container_name: kafka-connect
   #   depends_on:
   #     - kafka
