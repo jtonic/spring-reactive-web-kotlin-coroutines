@@ -15,16 +15,16 @@
     <description>Demo project for Spring Boot Reactive Web (kotlin | coroutines)</description>
     <properties>
         <java.version>21</java.version>
-        <kotlin.version>2.1.20</kotlin.version>
-        <kotlin.compiler.languageVersion>2.1</kotlin.compiler.languageVersion>
-        <kotlinx-coroutines.version>1.10.1</kotlinx-coroutines.version>
-        <arrow.version>2.0.1</arrow.version>
-        <kotest.version>6.0.0.M1</kotest.version>
+        <kotlin.version>2.2.0-RC</kotlin.version>
+        <kotlin.compiler.languageVersion>2.2</kotlin.compiler.languageVersion>
+        <kotlinx-coroutines.version>1.10.2</kotlinx-coroutines.version>
+        <arrow.version>2.1.2</arrow.version>
+        <kotest.version>6.0.0.M4</kotest.version>
         <kotest-assertions-arrow-jvm.version>1.4.0</kotest-assertions-arrow-jvm.version>
         <kotlin-logging.version>3.0.5</kotlin-logging.version>
-        <kotlin-logging-jvm.version>7.0.0</kotlin-logging-jvm.version>
+        <kotlin-logging-jvm.version>7.0.7</kotlin-logging-jvm.version>
         <vavr.version>0.10.5</vavr.version>
-        <lombok.version>1.18.36</lombok.version>
+        <lombok.version>1.18.38</lombok.version>
         <mapstruct.version>1.6.3</mapstruct.version>
     </properties>
     <dependencies>
