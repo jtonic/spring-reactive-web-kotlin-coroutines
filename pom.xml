@@ -236,6 +236,7 @@
                         and navigate to KEEP youtrack issue of the experimental feature
                         -->
                         <arg>-Xwhen-guards</arg>
+                        <arg>-Xcontext-parameters</arg>
                     </args>
                     <compilerPlugins>
                         <plugin>spring</plugin>
