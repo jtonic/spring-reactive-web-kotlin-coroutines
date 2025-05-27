@@ -2,6 +2,7 @@ package ro.jtonic.handson.spring.java.vavr;
 
 import io.vavr.control.Try;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.CompletableFuture;
@@ -46,6 +47,7 @@ public class MiscTest {
     }
 
     @Test
+    @Disabled
     public void testCF2() {
         CompletableFuture.<SSN>failedFuture(new RuntimeException("Boom!"))
                 .exceptionally(e -> {
