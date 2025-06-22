@@ -1,11 +1,16 @@
-bbonb:
-  message: Hello
-
-bbonb.discriminator: bbonb
+debug: true
 spring:
   config:
     import: "templates.yaml"
-
+  testcontainers:
+    dynamic-property-registry-injection: warn
 logging:
   level:
     ro.jtonic.handson.spring.java.aspect: DEBUG
+kafka:
+  bootstrap-servers: ${tc.kafka.bootstrap-servers}
+test:
+  topic: test-topic
+bbonb:
+  message: Hello
+  discriminator: bbonb
