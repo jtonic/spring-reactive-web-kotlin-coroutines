@@ -36,3 +36,8 @@ build/
 
 ### Miscs
 .tmp/
+
+### Scala
+.bloop/
+.metals/
+
