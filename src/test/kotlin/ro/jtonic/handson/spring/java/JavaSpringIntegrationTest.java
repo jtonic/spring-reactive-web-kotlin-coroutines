@@ -1,5 +1,7 @@
 package ro.jtonic.handson.spring.java;
 
+import io.opentelemetry.instrumentation.spring.autoconfigure.internal.instrumentation.kafka.KafkaInstrumentationAutoConfiguration;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
@@ -15,6 +17,7 @@ import java.lang.annotation.Target;
 @SpringBootTest(classes = {JavaMainApp.class})
 @Import(TestContainerConfig.class)
 @ActiveProfiles(profiles = {"default", "tst"})
+@EnableAutoConfiguration(exclude = {KafkaInstrumentationAutoConfiguration.class})
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface JavaSpringIntegrationTest {

@@ -1,0 +1,90 @@
+package ro.jtonic.handson.spring.java.spring
+
+import io.opentelemetry.api.GlobalOpenTelemetry
+import io.opentelemetry.api.trace.SpanKind
+import io.opentelemetry.sdk.OpenTelemetrySdk
+import io.opentelemetry.sdk.testing.exporter.InMemorySpanExporter
+import io.opentelemetry.sdk.trace.SdkTracerProvider
+import io.opentelemetry.sdk.trace.export.SimpleSpanProcessor
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.context.ActiveProfiles
+
+@SpringBootTest
+@ActiveProfiles("test")
+class PrintingServiceTracingIntegrationTest {
+
+    @Autowired
+    private lateinit var printingService: PrintingService
+
+    private lateinit var spanExporter: InMemorySpanExporter
+    private lateinit var originalOpenTelemetry: OpenTelemetrySdk
+    
+    @BeforeEach
+    fun setup() {
+        // Save original OpenTelemetry if it exists
+        if (GlobalOpenTelemetry.get() is OpenTelemetrySdk) {
+            originalOpenTelemetry = GlobalOpenTelemetry.get() as OpenTelemetrySdk
+        }
+        
+        // Set up in-memory span exporter for testing
+        spanExporter = InMemorySpanExporter.create()
+        val tracerProvider = SdkTracerProvider.builder()
+            .addSpanProcessor(SimpleSpanProcessor.create(spanExporter))
+            .build()
+
+        OpenTelemetrySdk.builder()
+            .setTracerProvider(tracerProvider)
+            .buildAndRegisterGlobal()
+    }
+
+    @AfterEach
+    fun cleanup() {
+        spanExporter.reset()
+        
+        // Restore original OpenTelemetry if it existed
+//        if (::originalOpenTelemetry.isInitialized) {
+//            GlobalOpenTelemetry.resetForTest()
+//            originalOpenTelemetry.register()
+//        }
+    }
+
+    @Test
+    fun `test PrintingService print method creates trace spans`() {
+        // Execute the method that should be traced
+        val result = printingService.print()
+        
+        // Verify the method was actually called and worked
+        assertTrue(result)
+
+        // Wait briefly to ensure spans are processed
+        Thread.sleep(100)
+        
+        // Get all finished spans
+        val finishedSpanItems = spanExporter.finishedSpanItems
+        
+        // Verify that we have at least one span
+        assertFalse(finishedSpanItems.isEmpty(), "No spans were created")
+        
+        // Find the span for PrintingService.print
+        val printServiceSpan = finishedSpanItems.find { 
+            it.name == "PrintingService.print" || 
+            it.name.contains("print") 
+        }
+        
+        // Verify the span exists and has expected attributes
+        assertNotNull(printServiceSpan, "PrintingService.print span not found")
+        printServiceSpan?.let { span ->
+            assertEquals(SpanKind.INTERNAL, span.kind, "Span kind should be INTERNAL")
+            assertTrue(span.traceId.isNotBlank(), "Trace ID should not be empty")
+            assertTrue(span.spanId.isNotBlank(), "Span ID should not be empty")
+            
+            // Verify status is successful
+            assertEquals("OK", span.status.statusCode.toString())
+        }
+    }
+}

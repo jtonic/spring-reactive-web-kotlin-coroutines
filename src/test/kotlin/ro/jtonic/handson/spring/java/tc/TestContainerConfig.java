@@ -14,7 +14,7 @@ public class TestContainerConfig {
         KafkaContainer kafka = new KafkaContainer(
                 DockerImageName.parse("confluentinc/cp-kafka:7.6.1")
                         .asCompatibleSubstituteFor("apache/kafka")
-        );
+        ).withReuse(true);
         registry.add("tc.kafka.bootstrap-servers", kafka::getBootstrapServers);
         return kafka;
     }

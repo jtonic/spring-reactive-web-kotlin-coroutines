@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: spring-web-reactive-kotlin-coroutines-test
+
+# OpenTelemetry test configuration
+opentelemetry:
+  sdk:
+    disabled: false
+  exporter:
+    otlp:
+      enabled: false  # Disable actual exporting in tests
+  instrumentation:
+    spring-webmvc:
+      enabled: false
+    spring-webflux:
+      enabled: false
+
+management:
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0
+
+logging:
+  level:
+    io.opentelemetry: DEBUG
+    ro.jtonic.handson: DEBUG

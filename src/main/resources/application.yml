@@ -1,5 +1,37 @@
 debug: true
 
+# OpenTelemetry Configuration
+opentelemetry:
+  exporter:
+    otlp:
+      endpoint: http://localhost:4317
+  traces:
+    exporter: otlp
+  metrics:
+    exporter: otlp
+  instrumentation:
+    spring-webmvc:
+      enabled: false
+    spring-webflux:
+      enabled: false
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  metrics:
+    export:
+      otlp:
+        url: http://localhost:4317
+        step: 10s
+  otlp:
+    tracing:
+      endpoint: http://localhost:4317
+
 server:
   port: 8443
   ssl:
@@ -13,6 +45,9 @@ spring:
   threads:
     virtual:
       enabled: true
+  application:
+    name: spring-web-reactive-kotlin-coroutines
+
   kafka:
     bootstrap-servers: ${kafka.bootstrap-servers:localhost:9093}
     consumer:
