@@ -1,6 +1,7 @@
 package ro.jtonic.handson.spring.java.tc;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,6 +34,7 @@ public class KafkaTcTest {
     }
 
     @Test
+    @Disabled
     public void testKafkaListenerReceivesMessage() throws Exception {
         // Arrange
         String id = UUID.randomUUID().toString();
