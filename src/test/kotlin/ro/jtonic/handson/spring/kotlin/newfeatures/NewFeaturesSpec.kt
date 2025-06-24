@@ -11,13 +11,18 @@ class NewFeaturesSpec : FreeSpec({
 
     "context parameters" {
 
-        context(userService: UserService, roleCheckService: RoleCheckService, raise: Raise<AppError>)
+        context(r: Raise<AppError>)
+        fun checkRole(role: String): User {
+            r.ensure(role.isNotEmpty()) { AppError.InvalidRoleError }
+            return User("Tony")
+        }
+
+        context(userService: UserService, roleCheckService: RoleCheckService, r: Raise<AppError>)
         fun doFindNameByUserId(id: Int, role: String): User =
-//          ensure(id > 0) { "User ID must be positive" }
             if (roleCheckService.check(role)) {
                 userService.findNameById(id)
             } else {
-                raise.raise(UserNotFoundError)
+                r.raise(UserNotFoundError)
             }
 
         val userService: UserService = object : UserService {
@@ -30,13 +35,15 @@ class NewFeaturesSpec : FreeSpec({
         }
 
         val userId = 1;
-        val anEither = either {
-            ensure(1 > 0) { "User ID must be positive" }
+        val role = "admin"
+        val eow = either {
+            ensure(userId > 0) { AppError.InvalidUserIdError(userId) }
+            checkRole(role)
             context(userService, roleCheck) {
                 doFindNameByUserId(id = userId, role = "admin")
             }
         }
-        anEither.shouldBeRight(User("User by it '$userId'"))
+        eow.shouldBeRight(User("User by it '$userId'"))
     }
 })
 
@@ -52,4 +59,6 @@ data class User(val name: String)
 
 sealed class AppError(msg: String) {
     data object UserNotFoundError : AppError("User not found") {}
+    data object InvalidRoleError : AppError("A role should not be empty!") {}
+    data class InvalidUserIdError(val id: Int) : AppError("Invalid user ID: $id")
 }
