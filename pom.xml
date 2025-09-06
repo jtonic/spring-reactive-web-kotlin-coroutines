@@ -15,7 +15,7 @@
     <description>Demo project for Spring Boot Reactive Web (kotlin | coroutines)</description>
     <properties>
         <java.version>21</java.version>
-        <kotlin.version>2.2.0</kotlin.version>
+        <kotlin.version>2.2.10</kotlin.version>
         <kotlin.compiler.languageVersion>2.2</kotlin.compiler.languageVersion>
         <kotlinx-coroutines.version>1.10.2</kotlinx-coroutines.version>
         <arrow.version>2.1.2</arrow.version>
@@ -33,7 +33,6 @@
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-script-runtime</artifactId>
-            <version>${kotlin.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -225,6 +224,13 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-bom</artifactId>
+                <version>${kotlin.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>io.arrow-kt</groupId>
                 <artifactId>arrow-stack</artifactId>
