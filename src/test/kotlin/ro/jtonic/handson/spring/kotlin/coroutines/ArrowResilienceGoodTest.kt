@@ -76,7 +76,7 @@ class ArrowResilienceGoodTest : FreeSpec({
                         println("coroutineContext = $coroutineContext")
 
                         println("=".repeat(80))
-                        println(testCase.name.testName)
+                        println(testCase.name.name)
                         measureTimeMillis {
                             // @formatter:off
                             val result: Either<AppError, String> =
