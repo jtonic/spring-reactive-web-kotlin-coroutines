@@ -1,4 +1,4 @@
-package ro.jtonic.handson.spring.kotlin.coroutines
+package ro.jtonic.handson.spring.kotlin.coroutines.kotest
 
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe

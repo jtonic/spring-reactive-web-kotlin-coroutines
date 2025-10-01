@@ -1,10 +1,12 @@
-package ro.jtonic.handson.spring.kotlin.newfeatures
+package ro.jtonic.handson.spring.kotlin.coroutines.kotest.newfeatures
 
 import arrow.core.raise.Raise
 import arrow.core.raise.either
 import io.kotest.assertions.arrow.core.shouldBeRight
 import io.kotest.core.spec.style.FreeSpec
+import ro.jtonic.handson.spring.kotlin.newfeatures.AppError
 import ro.jtonic.handson.spring.kotlin.newfeatures.AppError.UserNotFoundError
+import ro.jtonic.handson.spring.kotlin.newfeatures.UserInfo
 
 class NewFeaturesTest : FreeSpec({
 
@@ -35,7 +37,7 @@ class NewFeaturesTest : FreeSpec({
         val role = "admin"
 
         val eow = either {
-            val userInfo = UserInfo(userId, role)
+            val userInfo = UserInfo.Companion(userId, role)
             context(userService, roleCheck) {
                 doFindNameByUserId(userInfo)
             }

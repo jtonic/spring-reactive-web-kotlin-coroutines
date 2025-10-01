@@ -1,4 +1,4 @@
-package ro.jtonic.handson.spring.kotlin.coroutines
+package ro.jtonic.handson.spring.kotlin.coroutines.junit
 
 import io.netty.handler.ssl.SslContextBuilder
 import io.netty.handler.ssl.util.InsecureTrustManagerFactory

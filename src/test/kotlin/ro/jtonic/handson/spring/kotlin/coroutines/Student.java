@@ -15,21 +15,21 @@ public class Student {
 
     @Getter
     @AllArgsConstructor
-    static class Street {
+    public static class Street {
         private String name;
         private City city;
     }
 
     @Getter
     @AllArgsConstructor
-    static class City {
+    public static class City {
         private String name;
         private State state;
     }
 
     @Getter
     @AllArgsConstructor
-    static class State {
+    public static class State {
         private String name;
     }
 

@@ -1,6 +1,4 @@
-@file:OptIn(ExperimentalCoroutinesApi::class)
-
-package ro.jtonic.handson.spring.kotlin.coroutines
+package ro.jtonic.handson.spring.kotlin.coroutines.kotest
 
 import arrow.core.Either
 import arrow.core.left
@@ -10,7 +8,6 @@ import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldStartWith
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
@@ -46,7 +43,7 @@ class ArrowResilienceTest : FreeSpec({
         }
 
         // then random failures
-        return Either.catchOrThrow<RuntimeException, String> {
+        return Either.Companion.catchOrThrow<RuntimeException, String> {
             val res: Int = rdm.nextInt(9)
             if (res % 2 == 0) {
                 delay(10.milliseconds)
@@ -60,7 +57,7 @@ class ArrowResilienceTest : FreeSpec({
 
         var counter = 1
 
-        Schedule.recurs<Unit>(9).repeat {
+        Schedule.Companion.recurs<Unit>(9).repeat {
             counter++
             httpCall()
         }
@@ -71,10 +68,10 @@ class ArrowResilienceTest : FreeSpec({
     "retry 2" {
         var counter = 0
 
-        val keepLeft = (Schedule.identity<Int>() zipLeft Schedule.recurs(3)).repeat {
+        val keepLeft = (Schedule.Companion.identity<Int>() zipLeft Schedule.Companion.recurs(3)).repeat {
             counter++
         }
-        val keepRight = (Schedule.recurs<Int>(3) zipRight Schedule.identity()).repeat {
+        val keepRight = (Schedule.Companion.recurs<Int>(3) zipRight Schedule.Companion.identity()).repeat {
             counter++
         }
 
@@ -86,7 +83,7 @@ class ArrowResilienceTest : FreeSpec({
     "retry 3" {
         var counter = 0
 
-        val keep = Schedule.recurs<Int>(3).repeat {
+        val keep = Schedule.Companion.recurs<Int>(3).repeat {
             counter++
         }
         counter shouldBe 4
@@ -96,7 +93,7 @@ class ArrowResilienceTest : FreeSpec({
     "retry 4" {
         var result = ""
 
-        Schedule.doWhile<String> { input, _ -> input.length <= 5 }.repeat {
+        Schedule.Companion.doWhile<String> { input, _ -> input.length <= 5 }.repeat {
             result += "a"
             result
         }
@@ -106,7 +103,7 @@ class ArrowResilienceTest : FreeSpec({
 
     "retry 5" {
         val res =
-            Schedule
+            Schedule.Companion
                 .doUntil<Either<AppError, String>> { input, _ -> input.isRight() }
                 .repeat { httpCall() }
         res.shouldBeRight().also {
@@ -116,11 +113,10 @@ class ArrowResilienceTest : FreeSpec({
     }
 
     "retry 6" {
-        val right: Schedule<String, List<String>> = Schedule
+        val right: Schedule<String, List<String>> = Schedule.Companion
             .exponential<String>(10.milliseconds)
             .doWhile { _, duration -> duration < 60.seconds }
-            .andThen(Schedule.spaced<String>(60.seconds) and Schedule.recurs(100)).jittered()
-            .zipRight(Schedule.identity<String>().collect())
+            .andThen(Schedule.Companion.spaced<String>(60.seconds) and Schedule.Companion.recurs(100)).jittered()
+            .zipRight(Schedule.Companion.identity<String>().collect())
     }
 })
-

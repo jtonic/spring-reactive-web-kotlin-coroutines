@@ -1,11 +1,11 @@
-package ro.jtonic.handson.spring.kotlin.newfeatures
+package ro.jtonic.handson.spring.kotlin.coroutines.kotest.newfeatures
 
 import arrow.core.Either
 import arrow.core.raise.either
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
 
-class ContextParamArrow : FreeSpec({
+class ContextParamArrowTest : FreeSpec({
 
     "arrow effects by using either" {
         either {

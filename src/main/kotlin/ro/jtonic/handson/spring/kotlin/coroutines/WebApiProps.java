@@ -7,6 +7,6 @@ import java.util.Map;
 
 @ConfigurationProperties(prefix = "web")
 public record WebApiProps(Map<String, WebClientProps> client) {
-    record WebClientProps(String name, String description, @DefaultValue("3") int retryCount) {
+    public record WebClientProps(String name, String description, @DefaultValue("3") int retryCount) {
     }
 }

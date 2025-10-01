@@ -1,4 +1,4 @@
-package ro.jtonic.handson.spring.kotlin.coroutines
+package ro.jtonic.handson.spring.kotlin.coroutines.kotest
 
 import arrow.core.Either
 import arrow.core.raise.either
@@ -8,19 +8,19 @@ import io.kotest.assertions.arrow.core.shouldBeRight
 import io.kotest.assertions.arrow.core.shouldNotBeLeft
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
-import ro.jtonic.handson.spring.kotlin.coroutines.Student.*
+import ro.jtonic.handson.spring.kotlin.coroutines.Student
 
 class StudentTest : FreeSpec({
 
-    val student: Student? = Student("Bob", 18, Street("Avenue 12", null))
+    val student: Student? = Student("Bob", 18, Student.Street("Avenue 12", null))
 
     "with dummy Option - java 1.7" {
-        getStateFromJava7(student) shouldBe "unknown"
+        Student.getStateFromJava7(student) shouldBe "unknown"
     }
 
     "with dummy Option - java 8" {
-        val student = Student("Bob", 18, Street("Avenue 12", null))
-        getStateFromJava8(student) shouldBe "unknown"
+        val student = Student("Bob", 18, Student.Street("Avenue 12", null))
+        Student.getStateFromJava8(student) shouldBe "unknown"
     }
 
     "with powerful null safe operator" {
@@ -45,7 +45,8 @@ class StudentTest : FreeSpec({
         }
 
         "full info student" {
-            val student2 = Student("Bob", 18, Street("Avenue 12", City("Avenue Park", State("New York"))))
+            val student2 =
+                Student("Bob", 18, Student.Street("Avenue 12", Student.City("Avenue Park", Student.State("New York"))))
             val state = getState(student2)
             state shouldBeRight "New York"
         }

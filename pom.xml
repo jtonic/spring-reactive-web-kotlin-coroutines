@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.5</version>
+        <version>3.5.6</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>ro.jtonic.handson</groupId>
@@ -15,12 +15,12 @@
     <description>Demo project for Spring Boot Reactive Web (kotlin | coroutines)</description>
     <properties>
         <java.version>21</java.version>
-        <kotlin.version>2.2.10</kotlin.version>
+        <kotlin.version>2.2.20</kotlin.version>
         <kotlin.compiler.languageVersion>2.2</kotlin.compiler.languageVersion>
         <kotlinx-coroutines.version>1.10.2</kotlinx-coroutines.version>
         <arrow.version>2.1.2</arrow.version>
         <!--        <kotest.version>6.0.0.M1</kotest.version>-->
-        <kotest.version>6.0.2</kotest.version>
+        <kotest.version>6.0.3</kotest.version>
         <kotest-assertions-arrow-jvm.version>2.0.0</kotest-assertions-arrow-jvm.version>
         <kotlin-logging.version>3.0.5</kotlin-logging.version>
         <kotlin-logging-jvm.version>7.0.7</kotlin-logging-jvm.version>

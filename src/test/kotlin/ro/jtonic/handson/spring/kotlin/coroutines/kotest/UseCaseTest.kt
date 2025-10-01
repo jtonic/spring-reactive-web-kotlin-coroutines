@@ -1,9 +1,10 @@
-package ro.jtonic.handson.spring.kotlin.coroutines
+package ro.jtonic.handson.spring.kotlin.coroutines.kotest
 
 import io.kotest.core.spec.style.FreeSpec
+import ro.jtonic.handson.spring.kotlin.coroutines.*
 import kotlin.system.measureTimeMillis
 
-class UseCaseTest: FreeSpec ({
+class UseCaseTest : FreeSpec({
 
     fun latency(input: Input, body: UseCase<Input, Unit>) {
         measureTimeMillis {

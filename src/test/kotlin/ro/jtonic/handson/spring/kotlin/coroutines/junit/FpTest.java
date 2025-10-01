@@ -1,4 +1,4 @@
-package ro.jtonic.handson.spring.kotlin.coroutines;
+package ro.jtonic.handson.spring.kotlin.coroutines.junit;
 
 import io.vavr.API;
 import io.vavr.control.Option;

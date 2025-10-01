@@ -1,6 +1,4 @@
-@file:OptIn(ExperimentalCoroutinesApi::class)
-
-package ro.jtonic.handson.spring.kotlin.coroutines
+package ro.jtonic.handson.spring.kotlin.coroutines.kotest
 
 import arrow.core.Either
 import arrow.core.left
@@ -9,7 +7,6 @@ import io.kotest.assertions.arrow.core.shouldBeLeft
 import io.kotest.assertions.arrow.core.shouldBeRight
 import io.kotest.core.spec.style.FreeSpec
 import kotlinx.coroutines.CoroutineName
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.test.runTest
@@ -43,7 +40,7 @@ class ArrowResilienceGoodTest : FreeSpec({
         }
 
         // then random failures
-        return Either.catchOrThrow<RuntimeException, String> {
+        return Either.Companion.catchOrThrow<RuntimeException, String> {
             val res: Int = rdm.nextInt(9)
             if (res % 2 == 0) {
                 delay(10.milliseconds)
@@ -69,8 +66,8 @@ class ArrowResilienceGoodTest : FreeSpec({
 
                     suspend fun innerTest() {
                         println("Virtual Time: ${virtualTimeCase == 1}")
-                        val coroutineName = coroutineContext[CoroutineName] ?: "no name"
-                        val coroutineJob: Job? = coroutineContext[Job]
+                        val coroutineName = coroutineContext[CoroutineName.Key] ?: "no name"
+                        val coroutineJob: Job? = coroutineContext[Job.Key]
                         println("Coroutine Name: $coroutineName")
                         println("Coroutine Job = $coroutineJob")
                         println("coroutineContext = $coroutineContext")
@@ -81,7 +78,7 @@ class ArrowResilienceGoodTest : FreeSpec({
                             // @formatter:off
                             val result: Either<AppError, String> =
                                 (
-                                    Schedule
+                                    Schedule.Companion
                                         .exponential<Either<AppError, String>>(100.milliseconds, 2.0)
                                         .doWhile { _, duration ->
                                             println("Duration: ${formattedNumber(duration.inWholeMilliseconds)}")
@@ -89,7 +86,7 @@ class ArrowResilienceGoodTest : FreeSpec({
                                         }
                                         .doUntil { input, _ -> input.isRight() }
                                     zipRight
-                                        Schedule.identity()
+                                        Schedule.Companion.identity()
                                 ).repeat {
                                     if (httpCase == 0) {
                                         failingHHttpCall()
@@ -109,4 +106,3 @@ class ArrowResilienceGoodTest : FreeSpec({
         }
     }
 })
-
