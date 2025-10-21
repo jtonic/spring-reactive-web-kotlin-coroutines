@@ -86,7 +86,19 @@ services:
   #     CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1
   #     CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1
 
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: mssql
+    ports:
+      - "1433:1433"
+    environment:
+      SA_PASSWORD: "Password!1a"
+      ACCEPT_EULA: "Y"
+    volumes:
+      - mssql-data:/var/opt/mssql
+
 volumes:
   zookeeper-data:
   zookeeper-logs:
   kafka-data:
+  mssql-data:
