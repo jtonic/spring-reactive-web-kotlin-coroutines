@@ -5,7 +5,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.testcontainers.containers.KafkaContainer;
 import org.testcontainers.containers.MSSQLServerContainer;
+import org.testcontainers.containers.startupcheck.MinimumDurationRunningStartupCheckStrategy;
 import org.testcontainers.utility.DockerImageName;
+
+import java.time.Duration;
 
 @Configuration
 public class TestContainerConfig {
@@ -20,24 +23,17 @@ public class TestContainerConfig {
         return kafka;
     }
 
-
-    //
-
     @Bean
     public MSSQLServerContainer<?> mssqlContainer(DynamicPropertyRegistry registry) {
         MSSQLServerContainer<?> mssql = new MSSQLServerContainer<>(
                 DockerImageName.parse("mcr.microsoft.com/mssql/server:2022-latest")
         )
-/*
-                .withUsername("my_user")
-                .withPassword("StrongP@ssw0rd123")
-*/
-                .withUsername("sa")
-                .withPassword("Password!1a")
-                .withDatabaseName("tempdb")
                 .acceptLicense()
-                .withReuse(true);
-        registry.add("spring.datasource.url", mssql::getJdbcUrl);
+                .withExposedPorts(1433)
+                .withStartupCheckStrategy(new MinimumDurationRunningStartupCheckStrategy(Duration.ofSeconds(10)))
+                .withPassword("A_Str0ng_Required_Pwd")
+                .withInitScripts("db/init.sql");
+        registry.add("spring.datasource.url", () -> mssql.getJdbcUrl() + ";trustServerCertificate=true");
         registry.add("spring.datasource.username", mssql::getUsername);
         registry.add("spring.datasource.password", mssql::getPassword);
         return mssql;
