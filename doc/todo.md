@@ -2,6 +2,9 @@
 
 # TODO LIST
 
+- [ ] MSSQL JDBC Spring Template
+- [ ] MSQL flyway migrations
+
 - Asynchronous endpoints with:
   - [x] CF to Coroutines
   - [x] Coroutines to CF
@@ -11,4 +14,3 @@
 - [ ] Effects Programming with Kotlin Arrow
 - [ ] Integration with Kafka
 - [ ] Plain Kotlin Coroutines
- 

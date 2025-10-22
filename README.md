@@ -6,3 +6,8 @@
 - Kotlin 2.2
 - Kotlin coroutines
 - mvn 3.9+
+- Docker Desktop
+
+## References
+
+- [TODO list](./doc/todo.md)
