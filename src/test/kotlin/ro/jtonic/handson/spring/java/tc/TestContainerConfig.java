@@ -26,17 +26,17 @@ public class TestContainerConfig {
     @Bean
     public MSSQLServerContainer<?> mssqlContainer(DynamicPropertyRegistry registry) {
         MSSQLServerContainer<?> mssql = new MSSQLServerContainer<>(
-                DockerImageName.parse("mcr.microsoft.com/mssql/server:2022-latest")
+                DockerImageName.parse("mcr.microsoft.com/mssql/server")
         )
                 .acceptLicense()
-                .withExposedPorts(1433)
+                .withExposedPorts(14001)
                 .withStartupCheckStrategy(new MinimumDurationRunningStartupCheckStrategy(Duration.ofSeconds(10)))
                 .withPassword("Password!1a")
-                .withInitScripts("db/init.sql")
+                // .withInitScripts("db/init.sql")
                 .withReuse(true);
-        registry.add("spring.datasource.url", () -> mssql.getJdbcUrl() + ";trustServerCertificate=true");
-        registry.add("spring.datasource.username", mssql::getUsername);
-        registry.add("spring.datasource.password", mssql::getPassword);
+//        registry.add("spring.datasource.url", () -> mssql.getJdbcUrl() + ";trustServerCertificate=true");
+//        registry.add("spring.datasource.username", mssql::getUsername);
+//        registry.add("spring.datasource.password", mssql::getPassword);
         return mssql;
     }
 }

@@ -1,0 +1,6 @@
+IF OBJECT_ID('Persons', 'U') IS NULL
+CREATE TABLE Persons
+(
+    Id   INT IDENTITY (1,1) PRIMARY KEY,
+    Name NVARCHAR(100)
+);

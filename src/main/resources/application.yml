@@ -69,19 +69,27 @@ spring:
       missing-topics-fatal: false
   datasource:
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    url: jdbc:sqlserver://localhost:1433;database=MyAppDB;trustServerCertificate=true
+    url: jdbc:sqlserver://localhost:14001;database=KkmkDB;trustServerCertificate=true
     username: sa
     password: Password!1a
 
   flyway:
     enabled: true
-    locations: classpath:db/migration
-    baseline-on-migrate: true
+    encoding: UTF-8
+    locations: classpath:flyway
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    url: jdbc:sqlserver://localhost:1433;database=MyAppDB;trustServerCertificate=true
+    url: jdbc:sqlserver://localhost:14001;database=KkmkDB;trustServerCertificate=true
     user: sa
     password: Password!1a
-    table: flyway_schema_history_back
+    default-schema: dbo
+    table: flyway_schema_history
+
+    baseline-on-migrate: true
+    validate-on-migrate: true
+    sql-migration-prefix: V
+    sql-migration-separator: __
+    sql-migration-suffixes: .sql
+    fail-on-missing-locations: true
   # allow-unsupported-database: true
 
 kafka:
