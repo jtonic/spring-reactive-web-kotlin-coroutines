@@ -9,6 +9,7 @@ import java.time.Duration
 import java.time.Instant
 
 @JavaSpringIntegrationTest
+@Disabled("Put it back when we have open telemetry back")
 class EnableTracingPerformanceTest {
 
     @Autowired

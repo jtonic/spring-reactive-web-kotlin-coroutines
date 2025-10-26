@@ -27,7 +27,7 @@
         <vavr.version>0.10.5</vavr.version>
         <lombok.version>1.18.40</lombok.version>
         <mapstruct.version>1.6.3</mapstruct.version>
-        <opentelemetry-instrumentation-bom.version>2.16.0</opentelemetry-instrumentation-bom.version>
+        <!--        <opentelemetry-instrumentation-bom.version>2.16.0</opentelemetry-instrumentation-bom.version>-->
         <spring-modulith.version>1.4.2</spring-modulith.version>
         <jmolecules.version>2023.3.4</jmolecules.version>
         <mssql-jdbc.version>13.2.1.jre11</mssql-jdbc.version>
@@ -49,6 +49,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
@@ -115,45 +119,63 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>org.jspecify</groupId>
+            <artifactId>jspecify</artifactId>
+            <version>1.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
         <!-- OpenTelemetry dependencies -->
-        <dependency>
-            <groupId>io.opentelemetry</groupId>
-            <artifactId>opentelemetry-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.opentelemetry</groupId>
-            <artifactId>opentelemetry-sdk</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.opentelemetry</groupId>
-            <artifactId>opentelemetry-exporter-otlp</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.opentelemetry.instrumentation</groupId>
-            <artifactId>opentelemetry-spring-boot-starter</artifactId>
-            <exclusions>
-                <exclusion>
-                    <artifactId>opentelemetry-kafka-clients-2.6</artifactId>
+        <!--
+                <dependency>
+                    <groupId>io.opentelemetry</groupId>
+                    <artifactId>opentelemetry-api</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>io.opentelemetry</groupId>
+                    <artifactId>opentelemetry-sdk</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>io.opentelemetry</groupId>
+                    <artifactId>opentelemetry-exporter-otlp</artifactId>
+                </dependency>
+                <dependency>
                     <groupId>io.opentelemetry.instrumentation</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>opentelemetry-spring-kafka-2.7</artifactId>
-                    <groupId>io.opentelemetry.instrumentation</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>io.micrometer</groupId>
-            <artifactId>micrometer-tracing-bridge-otel</artifactId>
-        </dependency>
+                    <artifactId>opentelemetry-spring-boot-starter</artifactId>
+                    <exclusions>
+                        <exclusion>
+                            <artifactId>opentelemetry-kafka-clients-2.6</artifactId>
+                            <groupId>io.opentelemetry.instrumentation</groupId>
+                        </exclusion>
+                        <exclusion>
+                            <artifactId>opentelemetry-spring-kafka-2.7</artifactId>
+                            <groupId>io.opentelemetry.instrumentation</groupId>
+                        </exclusion>
+                    </exclusions>
+                </dependency>
+                <dependency>
+                    <groupId>io.micrometer</groupId>
+                    <artifactId>micrometer-tracing-bridge-otel</artifactId>
+                </dependency>
+        -->
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
             <artifactId>mssql-jdbc</artifactId>
             <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-sqlserver -->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-sqlserver</artifactId>
         </dependency>
         <dependency>
             <groupId>io.kotest</groupId>
@@ -228,11 +250,13 @@
             <artifactId>spring-kafka-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>io.opentelemetry</groupId>
-            <artifactId>opentelemetry-sdk-testing</artifactId>
-            <scope>test</scope>
-        </dependency>
+        <!--
+                <dependency>
+                    <groupId>io.opentelemetry</groupId>
+                    <artifactId>opentelemetry-sdk-testing</artifactId>
+                    <scope>test</scope>
+                </dependency>
+        -->
         <dependency>
             <groupId>org.springframework.modulith</groupId>
             <artifactId>spring-modulith-junit</artifactId>
@@ -263,13 +287,15 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <dependency>
-                <groupId>io.opentelemetry.instrumentation</groupId>
-                <artifactId>opentelemetry-instrumentation-bom</artifactId>
-                <version>${opentelemetry-instrumentation-bom.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
+            <!--
+                        <dependency>
+                            <groupId>io.opentelemetry.instrumentation</groupId>
+                            <artifactId>opentelemetry-instrumentation-bom</artifactId>
+                            <version>${opentelemetry-instrumentation-bom.version}</version>
+                            <type>pom</type>
+                            <scope>import</scope>
+                        </dependency>
+            -->
             <!-- https://mvnrepository.com/artifact/org.springframework.modulith/spring-modulith-bom -->
             <dependency>
                 <groupId>org.springframework.modulith</groupId>

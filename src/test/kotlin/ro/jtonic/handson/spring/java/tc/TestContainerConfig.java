@@ -31,8 +31,9 @@ public class TestContainerConfig {
                 .acceptLicense()
                 .withExposedPorts(1433)
                 .withStartupCheckStrategy(new MinimumDurationRunningStartupCheckStrategy(Duration.ofSeconds(10)))
-                .withPassword("A_Str0ng_Required_Pwd")
-                .withInitScripts("db/init.sql");
+                .withPassword("Password!1a")
+                .withInitScripts("db/init.sql")
+                .withReuse(true);
         registry.add("spring.datasource.url", () -> mssql.getJdbcUrl() + ";trustServerCertificate=true");
         registry.add("spring.datasource.username", mssql::getUsername);
         registry.add("spring.datasource.password", mssql::getPassword);

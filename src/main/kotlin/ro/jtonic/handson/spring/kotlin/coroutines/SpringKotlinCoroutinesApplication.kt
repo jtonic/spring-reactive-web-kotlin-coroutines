@@ -1,12 +1,13 @@
 package ro.jtonic.handson.spring.kotlin.coroutines
 
-import io.opentelemetry.instrumentation.spring.autoconfigure.internal.instrumentation.kafka.KafkaInstrumentationAutoConfiguration
+//import io.opentelemetry.instrumentation.spring.autoconfigure.internal.instrumentation.kafka.KafkaInstrumentationAutoConfiguration
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.runApplication
 import org.springframework.scheduling.annotation.EnableScheduling
 
-@SpringBootApplication(exclude = [KafkaInstrumentationAutoConfiguration::class])
+//@SpringBootApplication(exclude = [KafkaInstrumentationAutoConfiguration::class])
+@SpringBootApplication
 @EnableConfigurationProperties(BBonbProps::class, WebApiProps::class)
 @EnableScheduling
 class SpringKotlinCoroutinesApplication

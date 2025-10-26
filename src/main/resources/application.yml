@@ -1,36 +1,41 @@
-debug: true
+#debug: true
 
 # OpenTelemetry Configuration
-opentelemetry:
-  exporter:
-    otlp:
-      endpoint: http://localhost:4317
-  traces:
-    exporter: otlp
-  metrics:
-    exporter: otlp
-  instrumentation:
-    spring-webmvc:
-      enabled: false
-    spring-webflux:
-      enabled: false
+#opentelemetry:
+#  exporter:
+#    otlp:
+#      endpoint: http://localhost:4317
+#  traces:
+##    exporter: otlp
+#    exporter: none
+#  metrics:
+##    exporter: otlp
+#    exporter: none
+#  instrumentation:
+#    spring-webmvc:
+#      enabled: false
+#    spring-webflux:
+#      enabled: false
 
-management:
-  tracing:
-    sampling:
-      probability: 1.0
-  endpoints:
-    web:
-      exposure:
-        include: health,info,prometheus
-  metrics:
-    export:
-      otlp:
-        url: http://localhost:4317
-        step: 10s
-  otlp:
-    tracing:
-      endpoint: http://localhost:4317
+#management:
+#  tracing:
+#    enabled: false
+#    sampling:
+#      probability: 1.0
+#  endpoints:
+#    web:
+#      exposure:
+#        include: health,info,prometheus
+#  metrics:
+#    export:
+#      enabled: false
+#      otlp:
+#        url: http://localhost:4317
+#        step: 10s
+#  otlp:
+#    tracing:
+#      enabled: false
+#      endpoint: http://localhost:4317
 
 server:
   port: 8443
@@ -62,6 +67,22 @@ spring:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
     listener:
       missing-topics-fatal: false
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://localhost:1433;database=MyAppDB;trustServerCertificate=true
+    username: sa
+    password: Password!1a
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://localhost:1433;database=MyAppDB;trustServerCertificate=true
+    user: sa
+    password: Password!1a
+    table: flyway_schema_history_back
+  # allow-unsupported-database: true
 
 kafka:
   bootstrap-servers: localhost:9093
