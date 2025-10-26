@@ -6,7 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 import org.testcontainers.junit.jupiter.Testcontainers;
-import ro.jtonic.handson.spring.java.tc.TestContainerConfig;
+import ro.jtonic.handson.spring.java.tc.TestContainersConfig;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -15,7 +15,7 @@ import java.lang.annotation.Target;
 
 @Testcontainers
 @SpringBootTest(classes = {JavaMainApp.class})
-@Import(TestContainerConfig.class)
+@Import(TestContainersConfig.class)
 @ActiveProfiles(profiles = {"default", "tst"})
 //@EnableAutoConfiguration(exclude = {KafkaInstrumentationAutoConfiguration.class})
 @Retention(RetentionPolicy.RUNTIME)

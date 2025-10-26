@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Import
 import org.springframework.test.context.ActiveProfiles
 import org.testcontainers.junit.jupiter.Testcontainers
 import ro.jtonic.handson.spring.java.JavaMainApp
-import ro.jtonic.handson.spring.java.tc.TestContainerConfig
+import ro.jtonic.handson.spring.java.tc.TestContainersConfig
 
 @KtSpringIntegrationTest
 @ApplyExtension(extensions = [SpringExtension::class])
@@ -24,7 +24,7 @@ class SpringBootTest(val appCtx: ApplicationContext) : FreeSpec({
 
 @Testcontainers
 @SpringBootTest(classes = [JavaMainApp::class])
-@Import(TestContainerConfig::class)
+@Import(TestContainersConfig::class)
 @ActiveProfiles(profiles = ["default", "tst"])
 //@EnableAutoConfiguration(exclude = [KafkaInstrumentationAutoConfiguration::class])
 @Retention(AnnotationRetention.RUNTIME)
