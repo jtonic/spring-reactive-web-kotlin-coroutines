@@ -4,7 +4,8 @@ import io.kotest.core.extensions.ApplyExtension
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.extensions.spring.SpringExtension
 import io.kotest.matchers.shouldNotBe
-//import io.opentelemetry.instrumentation.spring.autoconfigure.internal.instrumentation.kafka.KafkaInstrumentationAutoConfiguration
+import io.opentelemetry.instrumentation.spring.autoconfigure.internal.instrumentation.kafka.KafkaInstrumentationAutoConfiguration
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.ApplicationContext
 import org.springframework.context.annotation.Import
@@ -26,7 +27,7 @@ class SpringBootTest(val appCtx: ApplicationContext) : FreeSpec({
 @SpringBootTest(classes = [JavaMainApp::class])
 @Import(TestContainerConfig::class)
 @ActiveProfiles(profiles = ["default", "tst"])
-//@EnableAutoConfiguration(exclude = [KafkaInstrumentationAutoConfiguration::class])
+@EnableAutoConfiguration(exclude = [KafkaInstrumentationAutoConfiguration::class])
 @Retention(AnnotationRetention.RUNTIME)
 @Target(AnnotationTarget.CLASS)
 annotation class KtSpringIntegrationTest

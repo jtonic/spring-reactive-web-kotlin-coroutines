@@ -27,7 +27,6 @@
         <vavr.version>0.10.5</vavr.version>
         <lombok.version>1.18.40</lombok.version>
         <mapstruct.version>1.6.3</mapstruct.version>
-        <!--        <opentelemetry-instrumentation-bom.version>2.16.0</opentelemetry-instrumentation-bom.version>-->
         <spring-modulith.version>1.4.2</spring-modulith.version>
         <jmolecules.version>2023.3.4</jmolecules.version>
         <mssql-jdbc.version>13.2.1.jre11</mssql-jdbc.version>
@@ -129,39 +128,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!-- OpenTelemetry dependencies -->
-        <!--
-                <dependency>
-                    <groupId>io.opentelemetry</groupId>
-                    <artifactId>opentelemetry-api</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>io.opentelemetry</groupId>
-                    <artifactId>opentelemetry-sdk</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>io.opentelemetry</groupId>
-                    <artifactId>opentelemetry-exporter-otlp</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>io.opentelemetry.instrumentation</groupId>
-                    <artifactId>opentelemetry-spring-boot-starter</artifactId>
-                    <exclusions>
-                        <exclusion>
-                            <artifactId>opentelemetry-kafka-clients-2.6</artifactId>
-                            <groupId>io.opentelemetry.instrumentation</groupId>
-                        </exclusion>
-                        <exclusion>
-                            <artifactId>opentelemetry-spring-kafka-2.7</artifactId>
-                            <groupId>io.opentelemetry.instrumentation</groupId>
-                        </exclusion>
-                    </exclusions>
-                </dependency>
-                <dependency>
-                    <groupId>io.micrometer</groupId>
-                    <artifactId>micrometer-tracing-bridge-otel</artifactId>
-                </dependency>
-        -->
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
             <artifactId>mssql-jdbc</artifactId>
@@ -250,13 +216,6 @@
             <artifactId>spring-kafka-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!--
-                <dependency>
-                    <groupId>io.opentelemetry</groupId>
-                    <artifactId>opentelemetry-sdk-testing</artifactId>
-                    <scope>test</scope>
-                </dependency>
-        -->
         <dependency>
             <groupId>org.springframework.modulith</groupId>
             <artifactId>spring-modulith-junit</artifactId>
@@ -287,16 +246,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!--
-                        <dependency>
-                            <groupId>io.opentelemetry.instrumentation</groupId>
-                            <artifactId>opentelemetry-instrumentation-bom</artifactId>
-                            <version>${opentelemetry-instrumentation-bom.version}</version>
-                            <type>pom</type>
-                            <scope>import</scope>
-                        </dependency>
-            -->
-            <!-- https://mvnrepository.com/artifact/org.springframework.modulith/spring-modulith-bom -->
             <dependency>
                 <groupId>org.springframework.modulith</groupId>
                 <artifactId>spring-modulith-bom</artifactId>
@@ -344,6 +293,63 @@
                     </plugin>
                 </plugins>
             </build>
+        </profile>
+        <profile>
+            <id>open-telemetry</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <opentelemetry-instrumentation-bom.version>2.16.0</opentelemetry-instrumentation-bom.version>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>io.opentelemetry</groupId>
+                    <artifactId>opentelemetry-api</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>io.opentelemetry</groupId>
+                    <artifactId>opentelemetry-sdk</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>io.opentelemetry</groupId>
+                    <artifactId>opentelemetry-exporter-otlp</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>io.opentelemetry.instrumentation</groupId>
+                    <artifactId>opentelemetry-spring-boot-starter</artifactId>
+                    <exclusions>
+                        <exclusion>
+                            <artifactId>opentelemetry-kafka-clients-2.6</artifactId>
+                            <groupId>io.opentelemetry.instrumentation</groupId>
+                        </exclusion>
+                        <exclusion>
+                            <artifactId>opentelemetry-spring-kafka-2.7</artifactId>
+                            <groupId>io.opentelemetry.instrumentation</groupId>
+                        </exclusion>
+                    </exclusions>
+                </dependency>
+                <dependency>
+                    <groupId>io.micrometer</groupId>
+                    <artifactId>micrometer-tracing-bridge-otel</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>io.opentelemetry</groupId>
+                    <artifactId>opentelemetry-sdk-testing</artifactId>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+            <dependencyManagement>
+                <dependencies>
+                    <dependency>
+                        <groupId>io.opentelemetry.instrumentation</groupId>
+                        <artifactId>opentelemetry-instrumentation-bom</artifactId>
+                        <version>${opentelemetry-instrumentation-bom.version}</version>
+                        <type>pom</type>
+                        <scope>import</scope>
+                    </dependency>
+                </dependencies>
+            </dependencyManagement>
         </profile>
     </profiles>
     <build>
