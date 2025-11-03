@@ -15,8 +15,13 @@
     <description>Demo project for Spring Boot Reactive Web (kotlin | coroutines)</description>
     <properties>
         <java.version>21</java.version>
-        <kotlin.version>2.2.20</kotlin.version>
+        <!-- Look here for more information about https://kotlinlang.org/docs/maven.html -->
+        <kotlin.version>2.2.21</kotlin.version>
         <kotlin.compiler.languageVersion>2.2</kotlin.compiler.languageVersion>
+        <kotlin.compiler.apiVersion>2.2</kotlin.compiler.apiVersion>
+        <kotlin.compiler.daemon>false</kotlin.compiler.daemon>
+        <kotlin.compiler.incremental>false</kotlin.compiler.incremental>
+
         <kotlinx-coroutines.version>1.10.2</kotlinx-coroutines.version>
         <arrow.version>2.2.0</arrow.version>
         <!--        <kotest.version>6.0.0.M1</kotest.version>-->

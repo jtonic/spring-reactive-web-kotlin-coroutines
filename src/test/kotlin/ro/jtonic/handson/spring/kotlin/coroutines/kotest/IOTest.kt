@@ -6,7 +6,7 @@ import java.io.File
 import kotlin.io.path.createTempFile
 
 @JvmInline
-value class ClasspathDirName(val name: String)
+value class ClasspathDirName(val name: String = "." /* default to root */)
 
 fun ClasspathDirName.concatAllFilesContentToTmpFile(
     prefixTmpName: String,
@@ -31,22 +31,31 @@ fun ClasspathDirName.concatAllFilesContentToTmpFile(
 
 class IOTest : FreeSpec({
 
-    "concat many files content in a single one in tmp folder" {
+    "test file contents concatenation in a temp file" - {
 
-        val tmpFile = ClasspathDirName("cql").concatAllFilesContentToTmpFile("SRP_", ".cql", extension = "cql")
-
-        println(
-            """
-        TmpDest content:
-        ${tmpFile.readText()}
-        """.trimIndent()
-        )
-        tmpFile.readText() shouldBe """
+        mapOf(
+            "." to "-- qq\n",
+            "cql" to """
             -- aa
             -- bb
             -- jj
             -- pp
             
             """.trimIndent()
+        ).forEach { (path, expectedContent) ->
+
+            "concat many files content in a single one in tmp folder" {
+
+                val tmpFile = ClasspathDirName(path).concatAllFilesContentToTmpFile("SRP_", ".cql", extension = "cql")
+
+                println(
+                    """
+        TmpDest content:
+        ${tmpFile.readText()}
+        """.trimIndent()
+                )
+                tmpFile.readText() shouldBe expectedContent
+            }
+        }
     }
 })
