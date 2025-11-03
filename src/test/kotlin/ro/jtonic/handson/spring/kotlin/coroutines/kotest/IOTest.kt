@@ -8,7 +8,11 @@ import kotlin.io.path.createTempFile
 @JvmInline
 value class ClasspathDirName(val name: String)
 
-fun ClasspathDirName.concatAllFilesContentToTmpFile(prefixTmpName: String, suffixTmpName: String): File = let {
+fun ClasspathDirName.concatAllFilesContentToTmpFile(
+    prefixTmpName: String,
+    suffixTmpName: String,
+    extension: String
+): File = let {
     val tmpDest = createTempFile(prefixTmpName, suffixTmpName).toFile()
     println("tmpDest = $tmpDest")
 
@@ -18,7 +22,7 @@ fun ClasspathDirName.concatAllFilesContentToTmpFile(prefixTmpName: String, suffi
     println("scrDir = $srcDir")
 
     tmpDest.writer().use { writer ->
-        srcDir.listFiles()?.sorted()?.forEach {
+        srcDir.listFiles()?.filter { it.isFile && it.extension == extension }?.sorted()?.forEach {
             writer.write(it.readText())
         }
     }
@@ -29,12 +33,12 @@ class IOTest : FreeSpec({
 
     "concat many files content in a single one in tmp folder" {
 
-        val tmpFile = ClasspathDirName("cql").concatAllFilesContentToTmpFile("SRP_", ".cql")
+        val tmpFile = ClasspathDirName("cql").concatAllFilesContentToTmpFile("SRP_", ".cql", extension = "cql")
 
         println(
             """
-           TmpDest content:
-           ${tmpFile.readText()}
+        TmpDest content:
+        ${tmpFile.readText()}
         """.trimIndent()
         )
         tmpFile.readText() shouldBe """
