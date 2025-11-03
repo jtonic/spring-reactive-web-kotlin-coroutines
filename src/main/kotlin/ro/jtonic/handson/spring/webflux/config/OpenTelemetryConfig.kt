@@ -1,4 +1,3 @@
-/*
 package ro.jtonic.handson.spring.webflux.config
 
 import io.opentelemetry.api.OpenTelemetry
@@ -74,4 +73,3 @@ class OpenTelemetryConfig {
         return openTelemetry.getTracer(applicationName)
     }
 }
-*/

@@ -2,9 +2,10 @@
 
 # TODO LIST
 
+- [ ] Arrow 2.2.0 and Context Parameters
 - [ ] MSSQL JDBC Spring Template
-- [ ] MSQL flyway migrations
 
+- [x] MSQL flyway migrations
 - Asynchronous endpoints with:
   - [x] CF to Coroutines
   - [x] Coroutines to CF

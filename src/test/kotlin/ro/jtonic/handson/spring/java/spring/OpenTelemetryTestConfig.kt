@@ -1,4 +1,3 @@
-/*
 package ro.jtonic.handson.spring.java.spring
 
 import io.opentelemetry.api.OpenTelemetry
@@ -59,4 +58,3 @@ class OpenTelemetryTestConfig {
         return openTelemetry.getTracer(applicationName)
     }
 }
-*/

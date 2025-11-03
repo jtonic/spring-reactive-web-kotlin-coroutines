@@ -1,6 +1,6 @@
 package ro.jtonic.handson.spring.java.spring;
 
-//import io.opentelemetry.instrumentation.annotations.WithSpan;
+import io.opentelemetry.instrumentation.annotations.WithSpan;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -12,7 +12,7 @@ public class PrintingService {
         this.printable = printable;
     }
 
-    //    @WithSpan
+    @WithSpan
     public boolean print() {
         return printable.print();
     }

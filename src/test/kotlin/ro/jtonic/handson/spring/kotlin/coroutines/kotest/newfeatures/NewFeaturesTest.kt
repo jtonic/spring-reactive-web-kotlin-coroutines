@@ -12,6 +12,7 @@ class NewFeaturesTest : FreeSpec({
 
     "context parameters" {
 
+        @Suppress("Ensure")
         context(userService: UserService, roleCheckService: RoleCheckService, r: Raise<AppError>)
         fun doFindNameByUserId(userInfo: UserInfo): User =
             if (roleCheckService.check(userInfo.role)) {

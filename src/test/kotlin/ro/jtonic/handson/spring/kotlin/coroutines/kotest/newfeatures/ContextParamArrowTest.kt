@@ -2,6 +2,7 @@ package ro.jtonic.handson.spring.kotlin.coroutines.kotest.newfeatures
 
 import arrow.core.Either
 import arrow.core.raise.either
+import arrow.core.raise.ensure
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
 
@@ -17,5 +18,6 @@ class ContextParamArrowTest : FreeSpec({
 data class NotFoundError(override val message: String) : RuntimeException(message)
 
 fun crazyAdd(a: Int, b: Int) = either {
-    if (a == b) raise(NotFoundError("Boom!!!")) else a + b
+    ensure(a != b) { NotFoundError("Boom!!!") }
+    a + b
 }
