@@ -33,7 +33,9 @@ public class TestContainersConfig {
     public MSSQLServerContainer<?> mssql(DynamicPropertyRegistry registry) {
         int port = TestSocketUtils.findAvailableTcpPort();
         MSSQLServerContainer<?> mssql = new MSSQLServerContainer<>(
-                DockerImageName.parse("mcr.microsoft.com/mssql/server")
+                DockerImageName.parse("mcr.microsoft.com/azure-sql-edge:latest") // arm64 compatible image
+                        .asCompatibleSubstituteFor("mcr.microsoft.com/mssql/server")
+//                DockerImageName.parse("mcr.microsoft.com/mssql/server") // only amd64 image (orig)
         )
                 .acceptLicense()
                 .withStartupCheckStrategy(new MinimumDurationRunningStartupCheckStrategy(Duration.ofSeconds(10)))

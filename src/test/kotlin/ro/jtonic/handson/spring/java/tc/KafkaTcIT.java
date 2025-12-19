@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @JavaSpringIntegrationTest
-public class KafkaTcTest {
+public class KafkaTcIT {
 
     @Autowired
     private KafkaTemplate<String, TestMessage> kafkaTemplate;

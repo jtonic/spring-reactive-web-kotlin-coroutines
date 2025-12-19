@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @JavaSpringIntegrationTest
 @EnableConfigurationProperties({BBonbProps.class})
-public class AppJavaTest {
+public class AppJavaIT {
 
     @Autowired
     private ApplicationContext ctx;

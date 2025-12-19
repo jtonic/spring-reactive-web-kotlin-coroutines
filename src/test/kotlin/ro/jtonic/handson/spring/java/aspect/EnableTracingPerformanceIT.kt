@@ -1,16 +1,16 @@
 package ro.jtonic.handson.spring.java.aspect
 
-import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.Disabled
-import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import ro.jtonic.handson.spring.java.JavaSpringIntegrationTest
 import java.time.Duration
 import java.time.Instant
+import kotlin.test.Ignore
+import kotlin.test.Test
+import kotlin.test.assertTrue
 
 @JavaSpringIntegrationTest
-@Disabled("Put it back when we have open telemetry back")
-class EnableTracingPerformanceTest {
+@Ignore("Put it back when we have open telemetry back")
+class EnableTracingPerformanceIT {
 
     @Autowired
     private lateinit var testService: TestService
@@ -20,7 +20,7 @@ class EnableTracingPerformanceTest {
     }
 
     @Test
-    @Disabled
+    @Ignore
     fun testTracingPerformanceOverhead() {
         val startTraced = Instant.now()
         (1..ITERATIONS).forEach { _ ->
@@ -39,7 +39,7 @@ class EnableTracingPerformanceTest {
         println("Overhead per operation: ${(tracedDuration.toMillis() - untracedDuration.toMillis()).toFloat() / ITERATIONS}ms")
 
         assertTrue(
-            tracedDuration.compareTo(untracedDuration.multipliedBy(50)) < 0,
+            tracedDuration < untracedDuration.multipliedBy(50),
             "Tracing overhead should be reasonable"
         )
     }

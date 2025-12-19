@@ -16,14 +16,14 @@
     <properties>
         <java.version>21</java.version>
         <!-- Look here for more information about https://kotlinlang.org/docs/maven.html -->
-        <kotlin.version>2.2.21</kotlin.version>
+        <kotlin.version>2.3.0</kotlin.version>
         <kotlin.compiler.languageVersion>2.2</kotlin.compiler.languageVersion>
         <kotlin.compiler.apiVersion>2.2</kotlin.compiler.apiVersion>
         <kotlin.compiler.daemon>false</kotlin.compiler.daemon>
         <kotlin.compiler.incremental>false</kotlin.compiler.incremental>
 
         <kotlinx-coroutines.version>1.10.2</kotlinx-coroutines.version>
-        <arrow.version>2.2.0</arrow.version>
+        <arrow.version>2.2.1.1</arrow.version>
         <!--        <kotest.version>6.0.0.M1</kotest.version>-->
         <kotest.version>6.0.3</kotest.version>
         <kotest-assertions-arrow-jvm.version>2.0.0</kotest-assertions-arrow-jvm.version>
@@ -226,6 +226,11 @@
             <artifactId>spring-modulith-junit</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-test-junit5</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
@@ -378,6 +383,7 @@
                         -->
                         <arg>-Xwhen-guards</arg>
                         <arg>-Xcontext-parameters</arg>
+                        <arg>-Xannotation-default-target=param-property</arg>
                     </args>
                     <compilerPlugins>
                         <plugin>spring</plugin>

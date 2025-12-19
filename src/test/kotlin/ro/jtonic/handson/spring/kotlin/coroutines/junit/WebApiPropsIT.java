@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @JavaSpringIntegrationTest
 @EnableConfigurationProperties({WebApiProps.class})
-public class WebApiPropsTest {
+public class WebApiPropsIT {
 
     @Autowired
     private WebApiProps webApiProps;

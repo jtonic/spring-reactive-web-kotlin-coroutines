@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @JavaSpringIntegrationTest
 @EnableConfigurationProperties({BBonbProps.class})
-public class MsSqlTest {
+public class MsSqlT {
 
     @Autowired
     private ApplicationContext ctx;

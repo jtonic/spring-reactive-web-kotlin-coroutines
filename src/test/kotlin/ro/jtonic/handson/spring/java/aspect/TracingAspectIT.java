@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @JavaSpringIntegrationTest
 @Disabled("Until we put the open telemetry back")
-public class TracingAspectTest {
+public class TracingAspectIT {
 
     @Autowired
     private TestService testService;

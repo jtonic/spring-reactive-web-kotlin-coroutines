@@ -1,42 +1,5 @@
 #debug: true
 
-# OpenTelemetry Configuration
-opentelemetry:
-  exporter:
-    otlp:
-      endpoint: http://localhost:4317
-  traces:
-    #    exporter: otlp
-    exporter: none
-  metrics:
-    #    exporter: otlp
-    exporter: none
-  instrumentation:
-    spring-webmvc:
-      enabled: false
-    spring-webflux:
-      enabled: false
-
-management:
-  tracing:
-    enabled: false
-    sampling:
-      probability: 1.0
-  endpoints:
-    web:
-      exposure:
-        include: health,info,prometheus
-  metrics:
-    export:
-      enabled: false
-      otlp:
-        url: http://localhost:4317
-        step: 10s
-  otlp:
-    tracing:
-      enabled: false
-      endpoint: http://localhost:4317
-
 server:
   port: 8443
   ssl:
@@ -104,3 +67,12 @@ web:
       name: two
       description: two
       retryCount: 5
+
+## disable open telemetry and management
+# otel.logs-exporter: none
+# otel.sdk.disabled: true
+management.otlp.logging.export.enabled: false
+management.otlp.metrics.export.enabled: false
+management.defaults.metrics.export.enabled: false
+management.tracing.enabled: false
+management.otlp.tracing.export.enabled: false

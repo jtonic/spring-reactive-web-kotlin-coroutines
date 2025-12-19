@@ -1,0 +1,15 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="JavaMainApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <module name="spring-web-reactive-kotlin-coroutines" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="ro.jtonic.handson.spring.java.JavaMainApp" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="ro.jtonic.handson.spring.java.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
