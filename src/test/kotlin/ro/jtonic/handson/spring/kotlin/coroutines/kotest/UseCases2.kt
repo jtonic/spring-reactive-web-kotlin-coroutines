@@ -1,9 +1,9 @@
-package ro.jtonic.handson.spring
+package ro.jtonic.handson.spring.kotlin.coroutines.kotest
 
 import arrow.core.andThen
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
-import ro.jtonic.handson.spring.Fp.Operation
+import ro.jtonic.handson.spring.kotlin.coroutines.kotest.Fp.Operation
 
 object Fp {
     fun interface Operation<in I, out O> {

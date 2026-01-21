@@ -23,7 +23,6 @@ import java.time.Duration
 @Configuration
 @ConditionalOnProperty(name = ["opentelemetry.sdk.disabled"], havingValue = "false", matchIfMissing = true)
 class OpenTelemetryConfig {
-
     @Value("\${spring.application.name:spring-web-reactive-kotlin-coroutines}")
     private lateinit var applicationName: String
 
@@ -32,36 +31,48 @@ class OpenTelemetryConfig {
 
     @Bean
     fun openTelemetry(): OpenTelemetry {
-        val resource = Resource.getDefault()
-            .merge(
-                Resource.create(
-                    Attributes.of(
-                        SERVICE_NAME, applicationName
+        val resource =
+            Resource
+                .getDefault()
+                .merge(
+                    Resource.create(
+                        Attributes.of(
+                            SERVICE_NAME,
+                            applicationName
+                        )
                     )
                 )
-            )
 
-        val spanExporter = OtlpGrpcSpanExporter.builder()
-            .setEndpoint(otlpEndpoint)
-            .setTimeout(Duration.ofSeconds(5))
-            .build()
+        val spanExporter =
+            OtlpGrpcSpanExporter
+                .builder()
+                .setEndpoint(otlpEndpoint)
+                .setTimeout(Duration.ofSeconds(5))
+                .build()
 
-        val metricExporter = OtlpGrpcMetricExporter.builder()
-            .setEndpoint(otlpEndpoint)
-            .setTimeout(Duration.ofSeconds(5))
-            .build()
+        val metricExporter =
+            OtlpGrpcMetricExporter
+                .builder()
+                .setEndpoint(otlpEndpoint)
+                .setTimeout(Duration.ofSeconds(5))
+                .build()
 
-        val sdkTracerProvider = SdkTracerProvider.builder()
-            .addSpanProcessor(BatchSpanProcessor.builder(spanExporter).build())
-            .setResource(resource)
-            .build()
+        val sdkTracerProvider =
+            SdkTracerProvider
+                .builder()
+                .addSpanProcessor(BatchSpanProcessor.builder(spanExporter).build())
+                .setResource(resource)
+                .build()
 
-        val sdkMeterProvider = SdkMeterProvider.builder()
-            .registerMetricReader(PeriodicMetricReader.builder(metricExporter).build())
-            .setResource(resource)
-            .build()
+        val sdkMeterProvider =
+            SdkMeterProvider
+                .builder()
+                .registerMetricReader(PeriodicMetricReader.builder(metricExporter).build())
+                .setResource(resource)
+                .build()
 
-        return OpenTelemetrySdk.builder()
+        return OpenTelemetrySdk
+            .builder()
             .setTracerProvider(sdkTracerProvider)
             .setMeterProvider(sdkMeterProvider)
             .setPropagators(ContextPropagators.create(W3CTraceContextPropagator.getInstance()))
@@ -69,7 +80,5 @@ class OpenTelemetryConfig {
     }
 
     @Bean
-    fun tracer(openTelemetry: OpenTelemetry): Tracer {
-        return openTelemetry.getTracer(applicationName)
-    }
+    fun tracer(openTelemetry: OpenTelemetry): Tracer = openTelemetry.getTracer(applicationName)
 }

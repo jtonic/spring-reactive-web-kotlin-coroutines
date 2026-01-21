@@ -9,7 +9,6 @@ import kotlin.test.Test
 class SpringKotlinCoroutinesApplicationIT(
     private val runFlow: RunFlow
 ) {
-
     @Test
     fun contextLoads() {
         runFlow(Input(10))

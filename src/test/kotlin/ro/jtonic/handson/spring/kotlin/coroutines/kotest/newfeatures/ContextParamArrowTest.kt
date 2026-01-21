@@ -6,18 +6,24 @@ import arrow.core.raise.ensure
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
 
-class ContextParamArrowTest : FreeSpec({
+class ContextParamArrowTest :
+    FreeSpec({
 
-    "arrow effects by using either" {
-        either {
-            crazyAdd(1, 2).bind()
-        } shouldBe Either.Right(3)
-    }
-})
+        "arrow effects by using either" {
+            either {
+                crazyAdd(1, 2).bind()
+            } shouldBe Either.Right(3)
+        }
+    })
 
-data class NotFoundError(override val message: String) : RuntimeException(message)
+data class NotFoundError(
+    override val message: String
+) : RuntimeException(message)
 
-fun crazyAdd(a: Int, b: Int) = either {
+fun crazyAdd(
+    a: Int,
+    b: Int
+) = either {
     ensure(a != b) { NotFoundError("Boom!!!") }
     a + b
 }

@@ -24,9 +24,7 @@
 
         <kotlinx-coroutines.version>1.10.2</kotlinx-coroutines.version>
         <arrow.version>2.2.1.1</arrow.version>
-        <!--        <kotest.version>6.0.0.M1</kotest.version>-->
-        <kotest.version>6.0.3</kotest.version>
-        <kotest-assertions-arrow-jvm.version>2.0.0</kotest-assertions-arrow-jvm.version>
+        <kotest.version>6.1.0</kotest.version>
         <kotlin-logging.version>3.0.5</kotlin-logging.version>
         <kotlin-logging-jvm.version>7.0.7</kotlin-logging-jvm.version>
         <vavr.version>0.10.5</vavr.version>
@@ -169,10 +167,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>io.kotest.extensions</groupId>
+            <groupId>io.kotest</groupId>
             <artifactId>kotest-assertions-arrow-jvm</artifactId>
-            <version>${kotest-assertions-arrow-jvm.version}</version>
-            <scope>test</scope>
+            <version>${kotest.version}</version>
         </dependency>
         <dependency>
             <groupId>io.kotest</groupId>
