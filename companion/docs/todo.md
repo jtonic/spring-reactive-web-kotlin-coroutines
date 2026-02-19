@@ -1,8 +1,11 @@
-[< back](../README.md)
+[< back](../../README.md)
 
 # TODO LIST
 
-- [ ] Arrow 2.2.0 and Context Parameters
+- Code coverage:
+  - [ ] Jacoco
+  - [x] Kover
+- [x] Arrow 2.2.0 and Context Parameters
 - [ ] MSSQL JDBC Spring Template
 
 - [x] MSQL flyway migrations
@@ -11,7 +14,7 @@
   - [x] Coroutines to CF
   - [x] Reactor
 - [x] kotest testing
-- [x] Migration to K2 (and Kotlin 2.0.0-Beta5)
-- [ ] Effects Programming with Kotlin Arrow
+- [x] Migration to K2
+- [x] Effects Programming with Kotlin Arrow
 - [ ] Integration with Kafka
 - [ ] Plain Kotlin Coroutines

@@ -10,4 +10,4 @@
 
 ## References
 
-- [TODO list](./doc/todo.md)
+- [TODO list](companion/docs/todo.md)
