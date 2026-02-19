@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.6</version>
+        <version>3.5.10</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>ro.jtonic.handson</groupId>
@@ -16,7 +16,7 @@
     <properties>
         <java.version>21</java.version>
         <!-- Look here for more information about https://kotlinlang.org/docs/maven.html -->
-        <kotlin.version>2.3.0</kotlin.version>
+        <kotlin.version>2.3.10</kotlin.version>
         <kotlin.compiler.languageVersion>2.2</kotlin.compiler.languageVersion>
         <kotlin.compiler.apiVersion>2.2</kotlin.compiler.apiVersion>
         <kotlin.compiler.daemon>false</kotlin.compiler.daemon>
@@ -33,6 +33,7 @@
         <spring-modulith.version>1.4.2</spring-modulith.version>
         <jmolecules.version>2023.3.4</jmolecules.version>
         <mssql-jdbc.version>13.2.1.jre11</mssql-jdbc.version>
+        <kover-maven-plugin.version>0.9.7</kover-maven-plugin.version>
     </properties>
     <dependencies>
         <dependency>
@@ -433,6 +434,60 @@
                                 <sourceDir>${project.basedir}/src/test/java</sourceDir>
                             </sourceDirs>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.jetbrains.kotlinx</groupId>
+                <artifactId>kover-maven-plugin</artifactId>
+                <version>${kover-maven-plugin.version}</version>
+                <configuration>
+                    <rules>
+                        <rule>
+                            <name>Minimum Coverage</name>
+                            <bounds>
+                                <bound>
+                                    <minValue>80</minValue>
+                                    <coverageUnits>LINE</coverageUnits>
+                                </bound>
+                            </bounds>
+                        </rule>
+                    </rules>
+                </configuration>
+                <executions>
+                    <!-- instrument test tasks -->
+                    <execution>
+                        <id>instr</id>
+                        <goals>
+                            <goal>instrumentation</goal>
+                        </goals>
+                        <phase>process-classes</phase>
+                    </execution>
+
+                    <!-- generate XML report in verify phase -->
+                    <execution>
+                        <id>kover-xml</id>
+                        <goals>
+                            <goal>report-xml</goal>
+                        </goals>
+                    </execution>
+
+                    <!-- generate HTML report in verify phase -->
+                    <execution>
+                        <id>kover-html</id>
+                        <goals>
+                            <goal>report-html</goal>
+                        </goals>
+                        <phase>verify</phase>
+                    </execution>
+
+                    <!-- check coverage rules in verify phase -->
+                    <execution>
+                        <id>kover-verify</id>
+                        <goals>
+                            <goal>verify</goal>
+                        </goals>
+                        <phase>verify</phase>
                     </execution>
                 </executions>
             </plugin>
