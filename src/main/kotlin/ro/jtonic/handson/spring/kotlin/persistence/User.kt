@@ -1,11 +1,11 @@
 package ro.jtonic.handson.spring.kotlin.persistence
 
 import jakarta.persistence.*
-import ro.jtonic.handson.spring.kotlin.Generated
+import ro.jtonic.handson.spring.kotlin.NoCoverageViaGenerated
 
 @Entity
 @Table(name = "Users")
-@Generated
+@NoCoverageViaGenerated
 class User(
     @Column(name = "Role") private var role: String
 ) {

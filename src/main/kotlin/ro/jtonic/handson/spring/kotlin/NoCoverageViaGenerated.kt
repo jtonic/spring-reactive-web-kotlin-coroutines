@@ -8,4 +8,4 @@ package ro.jtonic.handson.spring.kotlin
     AnnotationTarget.PROPERTY,
     AnnotationTarget.PROPERTY_GETTER
 )
-annotation class Generated
+annotation class NoCoverageViaGenerated
