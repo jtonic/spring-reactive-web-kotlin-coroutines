@@ -34,6 +34,7 @@
         <jmolecules.version>2023.3.4</jmolecules.version>
         <mssql-jdbc.version>13.2.1.jre11</mssql-jdbc.version>
         <kover-maven-plugin.version>0.9.7</kover-maven-plugin.version>
+        <jacoco.version>0.8.14</jacoco.version>
     </properties>
     <dependencies>
         <dependency>
@@ -275,7 +276,7 @@
         <profile>
             <id>local</id>
             <activation>
-                <activeByDefault>false</activeByDefault>
+                <activeByDefault>true</activeByDefault>
             </activation>
             <dependencies>
                 <dependency>
@@ -305,7 +306,7 @@
         <profile>
             <id>open-telemetry</id>
             <activation>
-                <activeByDefault>false</activeByDefault>
+                <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
                 <opentelemetry-instrumentation-bom.version>2.16.0</opentelemetry-instrumentation-bom.version>
@@ -442,6 +443,7 @@
                 <artifactId>kover-maven-plugin</artifactId>
                 <version>${kover-maven-plugin.version}</version>
                 <configuration>
+                    <skip>true</skip>
                     <rules>
                         <rule>
                             <name>Minimum Coverage</name>
@@ -488,6 +490,51 @@
                             <goal>verify</goal>
                         </goals>
                         <phase>verify</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco.version}</version>
+                <configuration>
+                    <excludes>
+                        <exclude>ro/jtonic/handson/spring/kotlin/coroutines/*</exclude>
+                        <!-- <exclude>ro/jtonic/handson/spring/kotlin/coroutines/CustomerResource.class</exclude> -->
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <rule>
+                                    <element>BUNDLE</element>
+                                    <limits>
+                                        <limit>
+                                            <counter>LINE</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>0.80</minimum>
+                                        </limit>
+                                    </limits>
+                                </rule>
+                            </rules>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

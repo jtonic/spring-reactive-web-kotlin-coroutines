@@ -2,6 +2,7 @@ package ro.jtonic.handson.spring.kotlin.newfeatures
 
 import arrow.core.raise.Raise
 import arrow.core.raise.ensure
+import ro.jtonic.handson.spring.kotlin.Generated
 
 sealed class AppError(msg: String) {
     data object UserNotFoundError : AppError("User not found") {}
@@ -13,6 +14,8 @@ data class UserInfo private constructor(val id: Int, val role: String) {
 
     companion object {
         context(r: Raise<AppError>)
+
+        @Generated
         operator fun invoke(id: Int, role: String): UserInfo = run {
             r.ensure(id > 0) { AppError.InvalidUserIdError(id) }
             r.ensure(role.isNotEmpty()) { AppError.InvalidRoleError }

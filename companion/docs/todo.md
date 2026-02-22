@@ -3,8 +3,9 @@
 # TODO LIST
 
 - Code coverage:
-  - [ ] Jacoco
+  - [x] Jacoco
   - [x] Kover
+  - [ ] Kover configuration for Azure DevOps Pipelines
 - [x] Arrow 2.2.0 and Context Parameters
 - [ ] MSSQL JDBC Spring Template
 

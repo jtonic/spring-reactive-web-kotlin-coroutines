@@ -1,9 +1,11 @@
 package ro.jtonic.handson.spring.kotlin.persistence
 
 import jakarta.persistence.*
+import ro.jtonic.handson.spring.kotlin.Generated
 
 @Entity
 @Table(name = "Users")
+@Generated
 class User(
     @Column(name = "Role") private var role: String
 ) {
