@@ -12,5 +12,5 @@ import org.springframework.scheduling.annotation.EnableScheduling
 class SpringKotlinCoroutinesApplication
 
 fun main(args: Array<String>) {
-	runApplication<SpringKotlinCoroutinesApplication>(*args)
+    runApplication<SpringKotlinCoroutinesApplication>(*args)
 }
