@@ -35,6 +35,10 @@
         <mssql-jdbc.version>13.2.1.jre11</mssql-jdbc.version>
         <kover-maven-plugin.version>0.9.7</kover-maven-plugin.version>
         <jacoco.version>0.8.14</jacoco.version>
+
+        <!-- flags -->
+        <coverage.jacoco.skip>true</coverage.jacoco.skip>
+        <coverage.kover.skip>true</coverage.kover.skip>
     </properties>
     <dependencies>
         <dependency>
@@ -443,7 +447,7 @@
                 <artifactId>kover-maven-plugin</artifactId>
                 <version>${kover-maven-plugin.version}</version>
                 <configuration>
-                    <skip>true</skip>
+                    <skip>${coverage.kover.skip}</skip>
                     <rules>
                         <rule>
                             <name>Minimum Coverage</name>
@@ -522,6 +526,7 @@
                             <goal>check</goal>
                         </goals>
                         <configuration>
+                            <skip>${coverage.jacoco.skip}</skip>
                             <rules>
                                 <rule>
                                     <element>BUNDLE</element>

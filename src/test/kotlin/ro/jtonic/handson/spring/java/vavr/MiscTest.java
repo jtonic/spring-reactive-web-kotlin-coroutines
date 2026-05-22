@@ -1,16 +1,18 @@
 package ro.jtonic.handson.spring.java.vavr;
 
 import io.vavr.control.Try;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.CompletableFuture;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@Slf4j
 public class MiscTest {
+
+    private static final Logger log = LoggerFactory.getLogger(MiscTest.class);
 
     @Test
     public void testVavrTry() {

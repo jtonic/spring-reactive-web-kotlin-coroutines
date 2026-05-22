@@ -1,49 +1,32 @@
 package ro.jtonic.handson.spring.kotlin.coroutines;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
 import java.util.Optional;
 
-@Getter
-@AllArgsConstructor
-public class Student {
-    private String name;
-    private Integer age;
-    private Street address;
+public record Student(
+        String name,
+        Integer age,
+        Street address) {
 
-
-    @Getter
-    @AllArgsConstructor
-    public static class Street {
-        private String name;
-        private City city;
+    public record Street(String name, City city) {
     }
 
-    @Getter
-    @AllArgsConstructor
-    public static class City {
-        private String name;
-        private State state;
+    public record City(String name, State state) {
     }
 
-    @Getter
-    @AllArgsConstructor
-    public static class State {
-        private String name;
+    public record State(String name) {
     }
 
 
     public static String getStateFromJava7(Student student) {
         // Java 7
         if (student != null) {
-            Street street = student.getAddress();
+            Street street = student.address();
             if (street != null) {
-                City city = street.getCity();
+                City city = street.city();
                 if (city != null) {
-                    State state = city.getState();
+                    State state = city.state();
                     if (state != null) {
-                        String stateName = state.getName();
+                        String stateName = state.name();
                         if (stateName != null) {
                             return stateName;
                         }
@@ -62,10 +45,10 @@ public class Student {
         Optional<Student> studentOpt = Optional.ofNullable(student);
         // Java 8
         return studentOpt
-                .map(Student::getAddress)
-                .map(Street::getCity)
-                .map(City::getState)
-                .map(State::getName)
+                .map(Student::address)
+                .map(Street::city)
+                .map(City::state)
+                .map(State::name)
                 .orElse("unknown");
     }
 }
